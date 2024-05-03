@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class AuthMiddleware
+class DriverMiddleware
 {
     /**
      * Handle an incoming request.
@@ -17,17 +17,11 @@ class AuthMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::check()) {
-            switch(Auth::user()->role){
-                case 'admin':
-                    return redirect(route('admin'));
-                case 'driver':
-                    return redirect(route('driver.index'));
-                    default:
-                    return redirect(route('auth.login'))->with('Error','Unexpected err ');
-                }
-        }else{
-            return redirect(route('auth.login'));
+
+        if (Auth::check() && Auth::user()->role== 'driver') {
+            return $next($request);
+        } else {
+            return redirect(route('auth.login'))->with('Error', 'You are not Allowed');
         }
     }
 }

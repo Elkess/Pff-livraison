@@ -20,12 +20,12 @@ class DeliveryFactory extends Factory
     {
         return [
             'pickuplocation' => $this->faker->address(),
-            'pickuptime' => $this->faker->dateTime(),
+            'pickuptime' => null,
             'dropofflocation' => $this->faker->address(),
-            'dropofftime' => $this->faker->dateTime(),
-            'status' => $this->faker->randomElement(['Ready','Delivered', 'in_transit', 'Canceled', 'Other']),
-            'client_id' => User::factory(),
-            'driver_id' => 100,
+            'dropofftime' => null,
+            'status' => $this->faker->randomElement(['Ready', 'in_transit', 'Other']),
+            'client_id' =>$this->faker->randomElement(User::all()),
+            'driver_id' => 1,
         ];
     }
 }

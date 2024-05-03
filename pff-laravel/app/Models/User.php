@@ -30,13 +30,16 @@ class User extends Authenticatable
     ];
 
     // Define inverse relationships for deliveries
-    public function deliveriesAsDriver()
+    public function driver()
     {
         return $this->hasMany(Delivery::class, 'driver_id');
     }
 
-    public function deliveriesAsClient()
+    public function client()
     {
         return $this->hasMany(Delivery::class, 'client_id');
+    }
+    public function vehicle(){
+        return $this->hasOne(Vehicle::class,'vehicle_id');
     }
 }

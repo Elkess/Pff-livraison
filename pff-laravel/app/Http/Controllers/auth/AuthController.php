@@ -56,7 +56,7 @@ class AuthController extends Controller
             'email' => $request->email,
             'phonenumber' => $request->phone,
             'password' => Hash::make($request->password),
-            'address' => $request->password,
+            'address' => $request->address,
         ]);
         return redirect(route('auth.login'));
     }

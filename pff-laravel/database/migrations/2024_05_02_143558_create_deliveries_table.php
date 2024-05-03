@@ -17,9 +17,9 @@ return new class extends Migration
             $table->id('delivery_id');
             $table->string('status');
             $table->string('pickuplocation');
-            $table->dateTime('pickuptime');
+            $table->dateTime('pickuptime')->nullable();
             $table->string('dropofflocation');
-            $table->dateTime('dropofftime');
+            $table->dateTime('dropofftime')->nullable();
             $table->unsignedBigInteger('client_id');
             $table->unsignedBigInteger('driver_id');
             $table->foreign('client_id')->references('user_id')->on('users');

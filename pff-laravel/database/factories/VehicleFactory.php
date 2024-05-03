@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,10 +18,11 @@ class VehicleFactory extends Factory
     public function definition()
     {
         return [
-            'type'=>$this->faker->randomElement(['Car','MotorCycle','Truck','Plane']),
-            'capacity'=>$this->faker->randomElement(['10','40','60','100']),
-            'currentlocation'=>$this->faker->streetAddress(),
-            'status'=>$this->faker->randomElement(['Available','Damaged','in Maintenance','in Transit']),
+            'type' => $this->faker->randomElement(['Car', 'MotorCycle', 'Truck', 'Plane']),
+            'capacity' => $this->faker->randomElement(['10', '40', '60', '100']),
+            'currentlocation' => $this->faker->streetAddress(),
+            'status' => $this->faker->randomElement(['Available', 'Damaged', 'in Maintenance', 'in Transit']),
+            'user_id' => $this->faker->randomElement(User::all())
         ];
     }
 }

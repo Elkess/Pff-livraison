@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Delivery;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class DriverController extends Controller
@@ -24,19 +25,40 @@ class DriverController extends Controller
     public function acceptDelivery($id)
     {
         $delivery = Delivery::find($id);
-        $delivery->update(['driver_id' => auth()->user()->user_id, 'status' => 'in_transit']);
+        $delivery->update([
+            'driver_id' => auth()->user()->user_id,
+            'status' => 'in_transit'
+        ]);
         return redirect(route('driver.deliveries'));
     }
+
     public function cancelDelivery($id)
     {
         $delivery = Delivery::find($id);
-        $delivery->update(['driver_id' => 100]);
+        $delivery->update(['driver_id' => 1,  'status' => 'Ready']);
         return redirect(route('driver.deliveries'));
     }
-    public function confirmDelivery($id)
+    public function pickupDelivery($id)
     {
         $delivery = Delivery::find($id);
-        $delivery->update(['status' => 'confirmed']);
+        $delivery->update([
+            'status' => 'Picked Up',
+            'pickuptime' => Carbon::now()
+        ]);
         return redirect(route('driver.deliveries'));
+    }
+    public function dropoffDelivery($id)
+    {
+        $delivery = Delivery::find($id);
+        // dd($delivery->pickuptime);
+        if ($delivery->pickuptime == null) {
+            return redirect(route('driver.deliveries'))->with('Error', 'PICK UP DELIVERY FIRST');
+        } else {
+            $delivery->update([
+                'status' => 'Delivered',
+             'dropofftime' => Carbon::now()
+            ]);
+            return redirect(route('driver.deliveries'));
+        }
     }
 }

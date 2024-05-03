@@ -12,8 +12,6 @@
                 <th>Delivery ID</th>
                 <th>Client</th>
                 <th>Pickup Location</th>
-                <th>Pickup Time</th>
-                <th>Dropoff Time</th>
                 <th>Dropoff Location</th>
                 <th>Action</th>
 
@@ -26,8 +24,6 @@
                         <td>{{ $delivery->delivery_id }}</td>
                         <td>{{ $delivery->client->Firstname }}</td>
                         <td>{{ $delivery->pickuplocation }}</td>
-                        <td>{{ $delivery->pickuptime }}</td>
-                        <td>{{ $delivery->dropofftime }}</td>
                         <td>{{ $delivery->dropofflocation }}</td>
                         <td>
                             <form method="POST" action={{ route('accept',$delivery->delivery_id) }}>
