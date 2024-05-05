@@ -9,6 +9,7 @@ class Delivery extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = 'delivery_id';
     protected $fillable = [
         'pickUpLocation',
         'pickUpTime',
