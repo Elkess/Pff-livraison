@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use PhpParser\Node\Stmt\TryCatch;
 
 class UserController extends Controller
 {
@@ -60,7 +61,7 @@ class UserController extends Controller
 // // 
 //     }
 
- public function store(Request $request)
+public function store(Request $request)
     {
         // Validate the request data
         $validatedData = $request->validate([
@@ -71,6 +72,7 @@ class UserController extends Controller
             'adress' => 'required|string|max:255',
             'role' => 'required|string|in:Admin,Driver,Client',
         ]);
+        
 
         // Create the user
         $user = User::create([
@@ -117,18 +119,33 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        $data=$request->validate([
-            'name'=>['required','string'],
-            'email'=>['required','string'],
-            'password'=>['required','string'],
-            'phoneNumber'=>['required','string'],
-            'adress'=>['required','string'],
-            'role'=>['required','string'],
+        // Validate the request data
+    try {
+            $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|
+            ',
+            'password' => 'required|string|min:8',
+            'phoneNumber' => 'required|string|max:20',
+            'adress' => 'required|string|max:255',
+            'role' => 'required|string|in:Admin,Driver,Client',
         ]);
 
-        $user->update($data);
+    } catch (\Exception $th) {
+        dd($th);
+    }
+        // Create the user
+        $user->update([
+            'name' => $validatedData['name'],
+            'email' => $validatedData['email'],
+            'password' => $validatedData['password'],
+            'phoneNumber' => $validatedData['phoneNumber'],
+            'adress' => $validatedData['adress'],
+            'role' => $validatedData['role'],
+        ]);
 
-        return to_route('admin.users.show')->with('message','User was updated');
+
+        return to_route('admin.users.show',$user)->with('message','User was updated');
     }
 
     /**

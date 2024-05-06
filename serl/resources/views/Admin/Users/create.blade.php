@@ -62,18 +62,33 @@
             @csrf
             <label for="name">Name:</label><br>
             <input type="text" id="name" name="name"><br>
+            @error('name')
+            <div class="error-message">{{ $message }}</div>
+            @enderror<br>
 
             <label for="email">Email:</label><br>
             <input type="email" id="email" name="email"><br>
+            @error('email')
+            <div class="error-message">{{ $message }}</div>
+            @enderror<br>
 
             <label for="password">Password:</label><br>
             <input type="password" id="password" name="password"><br>
+            @error('password')
+            <div class="error-message">{{ $message }}</div>
+            @enderror<br>
 
             <label for="phoneNumber">Phone Number:</label><br>
             <input type="text" id="phoneNumber" name="phoneNumber"><br>
+            @error('phonenumber')
+            <div class="error-message">{{ $message }}</div>
+            @enderror<br>
 
             <label for="adress">Address:</label><br>
             <input type="text" id="adress" name="adress"><br>
+            @error('adress')
+            <div class="error-message">{{ $message }}</div>
+            @enderror<br>
 
             <label for="role">Role:</label><br>
             <select name="role" id="role">
@@ -81,6 +96,9 @@
                 <option value="Driver">Driver</option>
                 <option value="Client">Client</option>
             </select><br>
+            @error('role')
+            <div class="error-message">{{ $message }}</div>
+            @enderror<br>
 
             <button type="submit">Create User</button>
         </form>

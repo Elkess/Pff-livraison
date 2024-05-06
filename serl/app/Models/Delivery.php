@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use SebastianBergmann\CodeCoverage\Driver\Driver;
 
 class Delivery extends Model
 {
@@ -21,10 +22,10 @@ class Delivery extends Model
     ];
 
     public function Driver (){
-        return $this->hasOne(User::class,'driver_id','id');
+        return $this->belongsTo(User::class);
     }
 
     public function Client (){
-        return $this->hasOne('delivery','client_id','id');
+        return $this->belongsTo(User::class);
     }
 }

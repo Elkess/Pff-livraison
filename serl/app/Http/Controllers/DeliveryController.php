@@ -10,13 +10,18 @@ class DeliveryController extends Controller
 {
     public function index()
     {
-        $deliveries = Delivery::all();
+        $deliveries = Delivery::with(['Client','Driver'])->get();
         return view('admin.deliveries.index', compact('deliveries'));
     }
 
     public function create()
-    {
-        return view('admin.deliveries.create');
+    {    
+    // Retrieve clients
+    $clients = User::where('role', 'Client')->get();
+
+    // Retrieve drivers
+    $drivers = User::where('role', 'Driver')->get();
+        return view('admin.deliveries.create',compact('clients','drivers'));
     }
 
     public function store(Request $request)
