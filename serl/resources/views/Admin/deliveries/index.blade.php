@@ -64,7 +64,7 @@
 <body>
     <div class="container">
         <h1>Deliveries</h1>
-        <a href="{{ route('admin.deliveries.create') }}" class="btn btn-primary">Create New Delivery</a>
+        {{-- <a href="{{ route('admin.deliveries.create') }}" class="btn btn-primary">Create New Delivery</a> --}}
         <table class="table mt-3">
             <thead>
                 <tr>

@@ -59,6 +59,8 @@
 
         <label for="email">Email:</label>
         <p>{{ $user->email }}</p>
+        <label for="password">Password:</label>
+        <p>{{ $user->password }}</p>
 
         <label for="phoneNumber">Phone Number:</label>
         <p>{{ $user->phoneNumber }}</p>

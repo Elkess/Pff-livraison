@@ -1,8 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\DeliveryController;
 use App\Http\Controllers\User\UserController;
+use App\Http\Controllers\Admin\VehicleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,3 +37,20 @@ Route::get('/admin/deliveries/{delivery}', [DeliveryController::class, 'show'])-
 Route::get('/admin/deliveries/{delivery}/edit', [DeliveryController::class, 'edit'])->name('admin.deliveries.edit');
 Route::put('/admin/deliveries/{delivery}', [DeliveryController::class, 'update'])->name('admin.deliveries.update');
 Route::delete('/admin/deliveries/{delivery}', [DeliveryController::class, 'destroy'])->name('admin.deliveries.destroy');
+
+
+// Vehicles
+Route::get('/admin/vehicles',[VehicleController::class,"index"])
+->name('admin.vehicles.index');
+Route::get('/admin/vehicles/create',[VehicleController::class,"create"])
+->name('admin.vehicles.create');
+Route::post('/admin/vehicles',[VehicleController::class,"store"])
+->name('admin.vehicles.store');
+Route::get('/admin/vehicles/{vehicle}',[VehicleController::class,"show"])
+->name('admin.vehicles.show');
+Route::get('/admin/vehicles/{vehicle}/edit',[VehicleController::class,"edit"])
+->name('admin.vehicles.edit');
+Route::put('/admin/vehicles/{vehicle}',[VehicleController::class,"update"])
+->name('admin.vehicles.update');
+Route::delete('/admin/vehicles/{vehicle}',[VehicleController::class,"destroy"])
+->name('admin.vehicles.destroy');

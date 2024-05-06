@@ -20,7 +20,7 @@ return new class extends Migration
             $table->enum('status',['in transit','available','not working','in maintenance']);
             $table->string('currentLocation');
             $table->unsignedBigInteger('driver_id');
-            $table->foreign('driver_id')->references('id')->on('users');
+            $table->foreign('driver_id')->references('id')->on('users')->onDelete('cascade');;
             $table->timestamps();
         });
     }

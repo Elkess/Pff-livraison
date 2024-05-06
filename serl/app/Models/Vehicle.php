@@ -9,6 +9,7 @@ use SebastianBergmann\CodeCoverage\Driver\Driver;
 class Vehicle extends Model
 {
     use HasFactory;
+    protected $primaryKey = 'vehicle_id';
 
     protected $fillable = [
         'type',
@@ -19,6 +20,6 @@ class Vehicle extends Model
     ];
 
     public function Driver(){
-        return $this->belongsTo(User::class,'driver_id','id');
+        return $this->belongsTo(User::class);
     }
 }
