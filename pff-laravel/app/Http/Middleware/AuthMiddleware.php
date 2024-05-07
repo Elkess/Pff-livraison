@@ -21,13 +21,18 @@ class AuthMiddleware
             switch(Auth::user()->role){
                 case 'admin':
                     return redirect(route('admin'));
+                    break;
                 case 'driver':
-                    return redirect(route('driver.index'));
+                    return
+                    redirect(route('driver.index'));
+                    break;
                     default:
                     return redirect(route('auth.login'))->with('Error','Unexpected err ');
+                    break;
+
                 }
         }else{
-            return redirect(route('auth.login'));
+            return $request($nest);
         }
     }
 }

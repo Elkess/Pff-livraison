@@ -2,19 +2,23 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\auth\AuthController;
+use App\Http\Controllers\ClientController;
 use App\Http\Controllers\DriverController;
 use App\Http\Controllers\FallbackController;
 use App\Http\Controllers\VehicleController;
 use App\Http\Middleware\DriverMiddleware;
 
+// Route::get('/admin', [AuthController::class, 'admin'])->name('admin');
 Route::redirect('/', 'authenticate');
 Route::fallback(FallbackController::class);
 
-Route::get('/client', [AuthController::class, 'client'])->name('client.index');
-Route::get('/admin', [AuthController::class, 'admin'])->name('admin');
+Route::prefix('Client')->group(function(){
+    Route::get('Dashboard', [ClientController::class, 'index'])->name('client.index');
+    Route::get('MyOrders', [ClientController::class, 'orders'])->name('client.orders');
+});
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
-Route::get('/authenticate', [AuthController::class, 'loginPage'])->name('auth.login');
+Route::get('/authenticate', [AuthController::class, 'loginPage'])->name('auth.login')->middleware('login');
 Route::get('/signup', [AuthController::class, 'signupPage'])->name('auth.signup');
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/signup', [AuthController::class, 'signup']);

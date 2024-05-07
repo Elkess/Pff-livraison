@@ -29,8 +29,8 @@ class DatabaseSeeder extends Seeder
             'phonenumber' => '+212522009988',
             'email' => 'ghandoumi01@gmail.com'
         ]);
+        \App\Models\User::factory(50)->create();
         \App\Models\Vehicle::factory(10)->create();
-        \App\Models\User::factory(30)->create();
         \App\Models\Delivery::factory(100)->create();
 
     }

@@ -22,9 +22,6 @@ return new class extends Migration
             $table->bigInteger('phonenumber');
             $table->string('email');
             $table->string('password');
-            $table->unsignedBigInteger('vehicle_id')->nullable();
-            $table->foreign('vehicle_id')->references('vehicle_id')->on('vehicles');
-
             $table->timestamps();
         });
     }

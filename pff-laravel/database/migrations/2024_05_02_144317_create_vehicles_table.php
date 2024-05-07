@@ -19,8 +19,8 @@ return new class extends Migration
             $table->string('capacity');
             $table->string('currentlocation');
             $table->string('status');
-            $table->unsignedBigInteger('user_id')->nullable();
-            $table->foreign('user_id')->references('user_id')->on('users');
+            $table->unsignedBigInteger('driver_id')->nullable();
+            $table->foreign('driver_id')->references('user_id')->on('users');
             $table->timestamps();
         });
     }

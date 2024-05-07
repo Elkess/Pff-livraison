@@ -22,7 +22,7 @@ class VehicleFactory extends Factory
             'capacity' => $this->faker->randomElement(['10', '40', '60', '100']),
             'currentlocation' => $this->faker->streetAddress(),
             'status' => $this->faker->randomElement(['Available', 'Damaged', 'in Maintenance', 'in Transit']),
-            'user_id' => $this->faker->randomElement(User::all())
+            'driver_id' => $this->faker->randomElement(User::where('role', 'driver')->get()),  
         ];
     }
 }

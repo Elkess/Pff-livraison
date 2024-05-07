@@ -21,6 +21,7 @@ class DriverMiddleware
         if (Auth::check() && Auth::user()->role== 'driver') {
             return $next($request);
         } else {
+            session()->flush();
             return redirect(route('auth.login'))->with('Error', 'You are not Allowed');
         }
     }

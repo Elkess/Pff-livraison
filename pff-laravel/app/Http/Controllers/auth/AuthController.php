@@ -40,7 +40,7 @@ class AuthController extends Controller
     }
     public function signup(Request $request)
     {
-        $signup = $request->validate([
+  $request->validate([
             'fname' => 'required',
             'lname' => 'required',
             'phone' => 'required|numeric',
