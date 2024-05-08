@@ -32,7 +32,7 @@ class AuthMiddleware
 
                 }
         }else{
-            return $request($nest);
+            return $next($request);
         }
     }
 }

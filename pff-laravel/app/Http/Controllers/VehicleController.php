@@ -13,4 +13,8 @@ class VehicleController extends Controller
         $vehicles = Vehicle::all();
         return view('vehicle.index',compact('driver','vehicles'));
     }
+    public function reportVehicle($id){
+        
+        return ;
+    }
 }

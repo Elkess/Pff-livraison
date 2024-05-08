@@ -25,6 +25,7 @@ Route::post('/signup', [AuthController::class, 'signup']);
 
 Route::middleware([DriverMiddleware::class])->group(function () {
     Route::prefix('Driver')->group(function () {
+        Route::patch('report/{id}', [VehicleController::class, 'reportVehicle'])->name('report');
         Route::get('Vehicles',[VehicleController::class,'index'])->name('driver.vehicles');
         Route::patch('dropoff/{id}', [DriverController::class, 'dropoffDelivery'])->name('dropoff');
         Route::patch('accept/{id}', [DriverController::class, 'acceptDelivery'])->name('accept');
