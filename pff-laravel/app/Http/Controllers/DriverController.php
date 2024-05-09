@@ -34,13 +34,13 @@ class DriverController extends Controller
     public function cancelDelivery(Request $request, $id)
     {
         $delivery = Delivery::find($id);
-
-        if ($delivery->pickuptime === null) {
+        if ($delivery->pickuptime == null) {
             $delivery->update(['driver_id' => 1, 'status' => 'Ready']);
         } else {
             $request->validate([
                 'newpickup' => 'required'
             ]);
+
             $delivery->update([
                 'driver_id' => 1,
                 'pickuplocation' => $request->newpickup,
@@ -66,6 +66,7 @@ class DriverController extends Controller
         if ($delivery->pickuptime == null) {
             return redirect(route('driver.deliveries'))->with('Error', 'PICK UP DELIVERY FIRST');
         } else {
+
             $delivery->update([
                 'status' => 'Delivered',
                 'dropofftime' => Carbon::now()

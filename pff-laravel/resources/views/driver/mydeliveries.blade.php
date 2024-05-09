@@ -32,6 +32,27 @@
                                         <button class="btn btn-danger " data-bs-toggle="modal"
                                             data-bs-target="#exampleModal">Cancel</button>
                                     </div>
+                                      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" >Cancel Delivery</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form class="mb-2" method="POST" action={{ route('cancel', $delivery->delivery_id) }}>
+                <div class="modal-body">
+                        @csrf
+                        @method('PATCH')
+                        <input class="form-control" name="newpickup" placeholder="New location" />
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-danger "type="submit">Submit</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
                                 @else
                                     <form class="mb-2" method="POST"
                                         action={{ route('cancel', $delivery->delivery_id) }}>
@@ -90,26 +111,5 @@
         </table>
     </div>
     <!--Cancel form -->
-    </div>
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Cancel Delivery</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <form class="mb-2" method="POST" action={{ route('cancel', $delivery->delivery_id) }}>
-                <div class="modal-body">
-                        @csrf
-                        @method('PATCH')
-                        <input class="form-control" name="newpickup" placeholder="New location" />
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-danger "type="submit">Submit</button>
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                </div>
-                </form>
-            </div>
-        </div>
     </div>
 @endsection
