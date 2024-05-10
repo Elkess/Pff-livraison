@@ -7,7 +7,6 @@
     <div>
         <div class="d-flex flex-row flex-wrap justify-content-evenly">
             @forelse ($Deliveries as $delivery)
-                @if ($delivery->driver_id == auth()->user()->user_id && $delivery->status != 'Delivered')
                     <div class="card m-2 w-25 shadow-sm">
                         <div class="card-header text-center">
                             <h5 class="card-title">Delivery ID: {{ $delivery->delivery_id }}</h5>
@@ -75,9 +74,8 @@
                                 </div>
                         </div>
                     </div>
-                @endif
             @empty
-                <div class="col">
+                <div class=" text-center ">
                     <p class="card-text">NO Delivery Available</p>
                 </div>
             @endforelse
@@ -115,7 +113,7 @@
                     @endif
                 @empty
                     <tr>
-                        <td colspan="7">Nothing Delivered yet :</td>
+                        <td class="text-center" colspan="7">Nothing Delivered yet :</td>
                     </tr>
                 @endforelse
             </tbody>

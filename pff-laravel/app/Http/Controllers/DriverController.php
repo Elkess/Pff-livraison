@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Delivery;
+use App\Models\Vehicle;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -14,21 +15,29 @@ class DriverController extends Controller
     }
     public function deliveries()
     {
-        $Deliveries = Delivery::all();
+        $driver = auth()->user();
+        $Deliveries = Delivery::where('driver_id', $driver->user_id)->get();
         return view('driver.mydeliveries', compact('Deliveries'));
     }
     public function deliveryList()
     {
-        $Deliveries = Delivery::paginate(20);
-        return view('driver.deliverylist', compact('Deliveries'));
+        $driver = auth()->user();
+        $vehicles = Vehicle::where('driver_id', $driver->user_id)->get();
+        $deliveries = Delivery::paginate(20);
+        return view('driver.deliverylist', compact('deliveries', 'vehicles'));
     }
-    public function acceptDelivery($id)
+    public function acceptDelivery(Request $request,$id)
     {
         $delivery = Delivery::find($id);
+        $Used_vehicule = Vehicle::where('vehicle_id',$request->vehicle) ;
+        $Used_vehicule->update([
+            'status'=>'in Transit'
+        ]);
         $delivery->update([
             'driver_id' => auth()->user()->user_id,
             'status' => 'in_transit'
         ]);
+        
         return redirect(route('driver.deliveries'));
     }
     public function cancelDelivery(Request $request, $id)

@@ -9,8 +9,9 @@ class Vehicle extends Model
 {
     use HasFactory;
     protected $fillable = ['name', 'type', 'capacity', 'currentlocation','status'];
+    protected $primaryKey ='vehicle_id';
     public function driver()
     {
-        return $this->belongsTo(User::class,'user_id');
+        return $this->hasOne(User::class,'user_id');
     }
 }

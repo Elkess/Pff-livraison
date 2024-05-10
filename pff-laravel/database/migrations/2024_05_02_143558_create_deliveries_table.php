@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('pickuplocation');
             $table->dateTime('pickuptime')->nullable();
             $table->string('dropofflocation');
+            $table->string('weight');
             $table->dateTime('dropofftime')->nullable();
             $table->unsignedBigInteger('client_id');
             $table->unsignedBigInteger('driver_id');

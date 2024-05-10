@@ -17,15 +17,11 @@ return new class extends Migration
             $table->id('report_id');
             $table->string('description');
             $table->string('location');
+            $table->unsignedBigInteger('vehicle_id')->nullable();
+            $table->foreign('vehicle_id')->references('vehicle_id')->on('vehicles');
             $table->timestamps();
         });
     }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('reports');

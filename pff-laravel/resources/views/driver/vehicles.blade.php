@@ -6,7 +6,6 @@
         <h2 class="text-center m-5">Vehicles</h2>
         <div class="row">
             @foreach ($vehicles as $vehicle)
-                @if ($vehicle->driver_id == auth()->user()->user_id)
                     <div class="col-md-4 mb-4">
                         <div class="card">
                             <div class="h-50">
@@ -53,27 +52,42 @@
                                     @endswitch>{{ $vehicle->status }}</span>
                                 </p>
                                 <p class="card-text">Location : {{ $vehicle->currentlocation }}</p>
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-  Launch static backdrop modal
-</button>
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                    data-bs-target="#staticBackdrop">
+                                    Report Vehicle</button>
 
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Understood</button>
-      </div>
-    </div>
-  </div>
-</div>
+                                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static"
+                                    data-bs-keyboard="false" tabindex="1" aria-labelledby="staticBackdropLabel"
+                                    aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h1 class="modal-title fs-5" id="staticBackdropLabel">Report Vehicle</h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close">
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form class="mb-2" method="POST" action={{ route('report', $vehicle->vehicle_id) }}>
+                                                    <div class="modal-body">
+                                                        @csrf
+                                                        <input name="vehicle_id" value={{ $vehicle->vehicle_id }} hidden />
+                                                        <input class="form-control"
+                                                         name="location"
+                                                            placeholder="Vehicle Location" />
+                                                        <textarea class="form-control" name="description" placeholder="Report Description">
+                                                        </textarea>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button class="btn btn-danger "type="submit">Submit</button>
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-bs-dismiss="modal">Close</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 {{-- <form method="POST" action={{ route('report', $vehicle->vehicle_id) }}>
                                     @csrf
                                     @method('PATCH')
@@ -84,7 +98,6 @@
                             </div>
                         </div>
                     </div>
-                @endif
             @endforeach
         </div>
     </div>
