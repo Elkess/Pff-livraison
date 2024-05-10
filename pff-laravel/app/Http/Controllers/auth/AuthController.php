@@ -35,14 +35,14 @@ class AuthController extends Controller
                 return redirect(route('client.index'));
             }
         } else {
-            return redirect(route('auth.login'))->with('err','Incorrect Password');
+            return redirect(route('auth.login'))->withErrors(['password'=>'Incorrect Password', 'email' => 'Incorrect Email']);
         }
     }
     public function signup(Request $request)
     {
   $request->validate([
-            'fname' => 'required',
-            'lname' => 'required',
+            'firstname' => 'required',
+            'lastname' => 'required',
             'phone' => 'required|numeric',
             'email' => 'required|email',
             'password' => 'required',

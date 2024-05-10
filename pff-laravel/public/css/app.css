@@ -1,8 +1,18 @@
+
 * {
     box-sizing: content-box;
     margin: 0px;
     border: 0px;
 }
-body{
-    background-color: rgb(228, 194, 184);   
+.bgimage{
+    background-image:url('https://linklogistics.com.tr/wp-content/uploads/2019/08/shutterstock_722794939-e1614461344527.jpg');
+}
+.err-pos{
+    position: relative;
+    bottom:100px
+    
+}
+
+.back{
+    background-color: #ff7900;
 }

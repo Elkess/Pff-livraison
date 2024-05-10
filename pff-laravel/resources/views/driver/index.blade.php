@@ -1,9 +1,9 @@
 @extends('layout.master')
 @section('title', 'Driver Page')
 @section('content')
-    <h4>
-        Hello Driver {{ Auth::user()->Lastname }}
-    </h4>
-    
+<div class="">
+    <h4 class=""> Bonjour Mr. {{ Auth::user()->Lastname }}</h4>
+</div>
+
 
 @endsection

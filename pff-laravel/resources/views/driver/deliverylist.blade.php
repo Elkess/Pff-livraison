@@ -4,10 +4,12 @@
 @section('content')
 <div class="container">
     <h2 class="text-center m-5">Deliveries</h2>
-    <table class="table table-hover table-bordered table-responsive table-striped table-info ">
+    <div class="d-flex flex-column  justify-content-center ">
+
+    <table class="table table-hover table-responsive table-hover table-info-subtle w-75">
         <thead>
-            <tr>
-                <th>Delivery ID</th>
+            <tr class="table-success text-center">
+                <th class="text-nowrap ">Delivery ID</th>
                 <th>Client</th>
                 <th>Pickup Location</th>
                 <th>Dropoff Location</th>
@@ -17,11 +19,11 @@
         <tbody>
             @forelse ($Deliveries as $delivery)
                 @if ($delivery->status =='Ready')
-                    <tr class="table-light">
-                        <td>{{ $delivery->delivery_id }}</td>
-                        <td>{{ $delivery->client->Firstname }}</td>
-                        <td>{{ $delivery->pickuplocation }}</td>
-                        <td>{{ $delivery->dropofflocation }}</td>
+                    <tr>
+                        <td class="text-center">{{ $delivery->delivery_id }}</td>
+                        <td class="text-center active   ">{{ $delivery->client->Firstname }}</td>
+                        <td class="text-wrap">{{ $delivery->pickuplocation }}</td>
+                        <td class="text-wrap">{{ $delivery->dropofflocation }}</td>
                         <td>
                             <form method="POST" action={{ route('accept',$delivery->delivery_id) }}>
                                 @csrf
@@ -31,13 +33,15 @@
                         </td>
                     </tr>
                 @endif
-            @empty
-                <tr>
-                    <td colspan="7">NO Delivery Available</td>
-                </tr>
-            @endforelse
+            @endforeach
+            <div class="">
+
+                {{ $Deliveries->links('pagination::bootstrap-4') }}
+            </div>
         </tbody>
     </table>
+    </div>
+
 </div>
 
 @endsection

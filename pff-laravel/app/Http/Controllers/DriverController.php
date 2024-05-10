@@ -19,7 +19,7 @@ class DriverController extends Controller
     }
     public function deliveryList()
     {
-        $Deliveries = Delivery::all();
+        $Deliveries = Delivery::paginate(20);
         return view('driver.deliverylist', compact('Deliveries'));
     }
     public function acceptDelivery($id)
