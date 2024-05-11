@@ -21,6 +21,8 @@ return new class extends Migration
             $table->string('dropofflocation');
             $table->string('weight');
             $table->dateTime('dropofftime')->nullable();
+            $table->unsignedBigInteger('vehicle_id')->nullable();
+            $table->foreign('vehicle_id')->references('vehicle_id')->on('vehicles');
             $table->unsignedBigInteger('client_id');
             $table->unsignedBigInteger('driver_id');
             $table->foreign('client_id')->references('user_id')->on('users');

@@ -6,6 +6,7 @@
     <h2 class="text-center m-5">Deliveries</h2>
     <div>
         <div class="d-flex flex-row flex-wrap justify-content-evenly">
+             {{-- {{ dd($Deliveries) }} --}}
             @forelse ($Deliveries as $delivery)
                     <div class="card m-2 w-25 shadow-sm">
                         <div class="card-header text-center">
@@ -51,8 +52,12 @@
                                                         <div class="modal-body">
                                                             @csrf
                                                             @method('PATCH')
-                                                            <input class="form-control" name="newpickup"
+                                                            <input type="text" value='1' name="vehicle" hidden/>
+                                                            <div class="mt-3">
+                                                                <label class=" form-label ">Package Location</label>
+                                                                <input class="form-control" name="newpickup"
                                                                 placeholder="New location" />
+                                                            </div>
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button class="btn btn-danger "type="submit">Submit</button>
@@ -100,7 +105,7 @@
                 </tr>
             </thead>
             <tbody>
-                @forelse ($Deliveries as $delivery)
+                @forelse ($Delivered as $delivery)
                     @if ($delivery->driver_id == auth()->user()->user_id && $delivery->status == 'Delivered')
                         <tr>
                             <td>{{ $delivery->delivery_id }}</td>

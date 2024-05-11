@@ -2,7 +2,10 @@
 @section('title', 'Driver Page')
 @section('content')
 <div class="">
-    <h4 class=""> Bonjour Mr. {{ Auth::user()->Lastname }}</h4>
+    <h4 class=""> Bonjour Mr. {{ Auth::user()->Firstname }}</h4>
+    <div class="card">
+        
+    </div>
 </div>
 
 

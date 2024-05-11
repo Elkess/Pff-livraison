@@ -29,6 +29,34 @@ class DatabaseSeeder extends Seeder
             'phonenumber' => '+212522009988',
             'email' => 'a@a.a'
         ]);
+        \App\Models\Vehicle::create([
+            'type' => 'MotorCycle',
+            'capacity' => '10',
+            'currentlocation' => 'streetAddress',
+            'status' => 'Available',
+            'driver_id' => 2,  
+        ]);
+        \App\Models\Vehicle::create([
+            'type' => 'Car',
+            'capacity' => '40',
+            'currentlocation' => 'streetAddress',
+            'status' => 'Available',
+            'driver_id' => 2,  
+        ]);
+        \App\Models\Vehicle::create([
+            'type' => 'Truck',
+            'capacity' => '60',
+            'currentlocation' => 'streetAddress',
+            'status' => 'Available',
+            'driver_id' => 2,  
+        ]);
+        \App\Models\Vehicle::create([
+            'type' => 'plane',
+            'capacity' => '100',
+            'currentlocation' => 'streetAddress',
+            'status' => 'Available',
+            'driver_id' => 2,  
+        ]);
         \App\Models\User::factory(50)->create();
         \App\Models\Vehicle::factory(10)->create();
         \App\Models\Delivery::factory(100)->create();

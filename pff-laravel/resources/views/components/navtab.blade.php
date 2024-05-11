@@ -40,7 +40,7 @@
                             id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
                             <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="hugenerd" width="30"
                                 height="30" class="rounded-circle">
-                            <span class="d-none d-sm-inline mx-1">{{ auth()->user()->Lastname }}</span>
+                            <span class="d-none d-sm-inline mx-1">{{ auth()->user()->Firstname }}</span>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
                             <li><a class="dropdown-item" href={{ route('logout') }}>Sign out</a></li>

@@ -12,6 +12,7 @@ class Delivery extends Model
     protected $fillable = [
         'client_id',
         'driver_id',
+        'vehicle_id',
         'pickuplocation',
         'weight',
         'pickuptime',

@@ -14,4 +14,8 @@ class Vehicle extends Model
     {
         return $this->hasOne(User::class,'user_id');
     }
+    public function report(){
+        
+        return $this->hasOne(Report::class,'report_id');
+    }
 }
