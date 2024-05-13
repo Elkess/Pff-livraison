@@ -10,13 +10,11 @@ class Payment extends Model
     use HasFactory;
 
     protected $fillable = [
-        'PaymentDate',
         'amount',
-        'status',
+        'card_number',
+        'expiry_date',
+        'cvv',
+        'PaymentDate',
         'client_id',
     ];
-
-    public function Client (){
-        return $this->hasMany(User::class,'client_id','id');
-    }
 }

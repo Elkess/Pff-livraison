@@ -1,10 +1,8 @@
 <?php
-
 namespace Database\Seeders;
 
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-
 use App\Models\Delivery;
+use App\Models\Order;
 use App\Models\Payment;
 use App\Models\User;
 use App\Models\Vehicle;
@@ -17,33 +15,47 @@ class DatabaseSeeder extends Seeder
      *
      * @return void
      */
-public function run()
-{
-    User::factory(5)->create();
+    public function run()
+    {
+        // Create 5 users
+        User::factory(5)->create();
 
-    $client = User::find(1); // Assuming you have a client with ID 1
-    $paymentData = [
-        'PaymentDate' => now(),
-        'amount' => 874.11,
-        'status' => 'Refunded',
-        'client_id' => $client->id, // Set the client_id
-    ];
+        // Create clients
+        $clients = User::factory()->count(5)->create(['role' => 'client']);
 
-    Payment::factory(5)->create($paymentData);
+        // Create orders for each client
+        foreach ($clients as $client) {
+            Order::factory()->create([
+                'order_number' => uniqid(),
+                'pickUpLocation' => 'Pickup Address',
+                'pickUpTime' => now()->addDay(),
+                'dropOffLocation' => 'Dropoff Address',
+                'dropOffTime' => now()->addDays(2),
+                'client_id' => $client->id,
+            ]);
+        }
 
-    $vehicles = Vehicle::factory(4)->create();
+        // Create payments
+        foreach ($clients as $client) {
+            Payment::factory()->create([
+                'PaymentDate' => now(),
+                'amount' => 874.11,
+                'status' => 'Pending',
+                'client_id' => $client->id,
+            ]);
+        }
 
-    // Assuming you have drivers already created
-    $drivers = User::where('role', 'Driver')->take(4)->get();
+        // Create 4 vehicles
+        $vehicles = Vehicle::factory(4)->create();
 
-    foreach ($vehicles as $key => $vehicle) {
-        $vehicle->update(['driver_id' => $drivers[$key]->id]);
+        // Assuming you have drivers already created
+        $drivers = User::where('role', 'Driver')->take(4)->get();
+
+        foreach ($vehicles as $key => $vehicle) {
+            $vehicle->update(['driver_id' => $drivers[$key]->id]);
+        }
+
+        // Create deliveries
+        Delivery::factory(5)->create();
     }
-
-
-
-    
-    Delivery::factory(5)->create();
-}
-
 }
