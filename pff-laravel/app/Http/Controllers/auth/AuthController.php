@@ -30,7 +30,7 @@ class AuthController extends Controller
             if (auth()->user()->role == 'admin') {
                 return redirect(route('admin'));
             } else if (auth()->user()->role == 'driver') {
-                return redirect(route('driver.index'));
+                return redirect(route('driver.deliveries'));
             } else if (auth()->user()->role == 'client') {
                 return redirect(route('client.index'));
             }
@@ -40,17 +40,17 @@ class AuthController extends Controller
     }
     public function signup(Request $request)
     {
-  $request->validate([
+  $validated = $request->validate([
             'firstname' => 'required',
             'lastname' => 'required',
             'phone' => 'required|numeric',
             'email' => 'required|email',
             'password' => 'required',
-            'address' => 'required',
         ]);
+    if($validated){
         User::create([
-            'firstname' => $request->fname,
-            'lastname' => $request->lname,
+            'firstname' => $request->firstname,
+            'lastname' => $request->lastname,
             'phone' => $request->phone,
             'role' => 'client',
             'email' => $request->email,
@@ -59,6 +59,9 @@ class AuthController extends Controller
             'address' => $request->address,
         ]);
         return redirect(route('auth.login'));
+    }else{
+        return redirect(route('auth.signup'))->withErrors('ema','ooopsy');
+    }
     }
     public function logout(){
         session()->flush();

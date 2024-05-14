@@ -13,16 +13,15 @@
 
     </head>
 
-    <body>
+    <body  style="background-image: url('https://6130635.fs1.hubspotusercontent-na1.net/hub/6130635/hubfs/AdobeStock_209740192.jpeg?width=720&name=AdobeStock_209740192.jpeghttps://stock-log.pl/wp-content/uploads/2019/12/frony.jpg');">
         <x-navbar />
-        <div class="d-flex flex-row justify-content-between ">
-                @yield('form')
-            <div >
-              <img class=" img-fluid w-50" src="https://linklogistics.com.tr/wp-content/uploads/2019/08/shutterstock_722794939-e1614461344527.jpg"/>
-            </div>
-        </div>
-        <x-footer />
+        <div class="mb-3">
 
+            {{-- <div class="d-flex flex-row justify-content-between "> --}}
+                {{-- </div> --}}
+                @yield('form')
+            </div>
+                <x-footer />
     </body>
 
 </html>

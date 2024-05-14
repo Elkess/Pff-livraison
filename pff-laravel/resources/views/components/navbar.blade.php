@@ -3,22 +3,28 @@
            <div class="sidebar-sticky pt-3">
                <ul class="nav d-flex flex-row ">
                    <li class="nav-item">
-
                        <a class="nav-link" href='/'>Navbar</a>
                    </li>
                    @guest
-                       <li class="nav-item"><a class="nav-link" href="{{ route('auth.login') }}">login</a></li>
-                       <li class="nav-item"><a class="nav-link" href="{{ route('auth.signup') }}">Signup</a></li>
+                       <li class="nav-item">
+                        <a class="nav-link" href="{{ route('auth.login') }}">login</a>
+                    </li>
+                       <li class="nav-item">
+                        <a class="nav-link" href="{{ route('auth.signup') }}">Signup</a>
+                    </li>
                    @endguest
                    @auth
                        @switch(auth()->user()->role)
                            @case('client')
-                               <li class="nav-item">
+                               {{-- <li class="nav-item">
                                    <a class="nav-link" href="{{ route('client.index') }}">Dashboard</a>
                                </li>
                                <li class="nav-item">
-                                   <a class="nav-link" href="{{ route('client.orders') }}">My Orders</a>
+                                   <a class="nav-link" href="{{ route('client.index') }}">Reclamations</a>
                                </li>
+                               <li class="nav-item">
+                                   <a class="nav-link" href="{{ route('client.orders') }}"></a>
+                               </li> --}}
                            @break
 
                            @case('driver')

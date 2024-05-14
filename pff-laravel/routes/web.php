@@ -13,23 +13,24 @@ Route::fallback(FallbackController::class);
 
 Route::prefix('Client')->group(function () {
     Route::get('Dashboard', [ClientController::class, 'index'])->name('client.index');
-    Route::get('MyOrders', [ClientController::class, 'orders'])->name('client.orders');
+    Route::get('Dashboard', [ClientController::class, 'create'])->name('client.order');
 });
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
-Route::get('/authenticate', [AuthController::class, 'loginPage'])->name('auth.login')->middleware('login');
+Route::get('/authenticate', [AuthController::class, 'loginPage'])->name('auth.login'); #->middleware('login');
 Route::get('/signup', [AuthController::class, 'signupPage'])->name('auth.signup');
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/signup', [AuthController::class, 'signup']);
 
 Route::middleware([DriverMiddleware::class])->group(function () {
     Route::prefix('Driver')->group(function () {
+
         Route::get('Vehicles', [DriverController::class, 'vehicles'])->name('driver.vehicles');
-        Route::get('Dashboard', [DriverController::class, 'index'])->name('driver.index');
         Route::get('Deliveries', [DriverController::class, 'deliveryList'])->name('driver.deliverylist');
         Route::get('MyDeliveries', [DriverController::class, 'deliveries'])->name('driver.deliveries');
+        Route::get('Reports', [DriverController::class, 'reports'])->name('driver.reports');
         Route::post('report/{id}', [DriverController::class, 'reportVehicle'])->name('report');
-        Route::patch('dropoff/{id}',[DriverController::class, 'dropoffDelivery'])->name('dropoff');
+        Route::patch('dropoff/{id}', [DriverController::class, 'dropoffDelivery'])->name('dropoff');
         Route::patch('accept/{id}', [DriverController::class, 'acceptDelivery'])->name('accept');
         Route::patch('cancel/{id}', [DriverController::class, 'cancelDelivery'])->name('cancel');
         Route::patch('pickup/{id}', [DriverController::class, 'pickupDelivery'])->name('pickup');

@@ -17,7 +17,6 @@ class DatabaseSeeder extends Seeder
             'Lastname' => 'amine ',
             'role' => 'admin',
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
-            'address' => 'Deroua Settat',
             'phonenumber' => '+212522009988',
             'email' => 'b@b.b'
         ]);
@@ -25,9 +24,15 @@ class DatabaseSeeder extends Seeder
             'Lastname' => 'rhandoumi',
             'role' => 'driver',
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
-            'address' => 'Casa Settat',
             'phonenumber' => '+212522009988',
             'email' => 'a@a.a'
+        ]);
+        \App\Models\User::create(['Firstname' => 'Youssef',
+            'Lastname' => 'rhandoumi',
+            'role' => 'client',
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
+            'phonenumber' => '+212522009988',
+            'email' => 'q@q.q'
         ]);
         \App\Models\Vehicle::create([
             'type' => 'MotorCycle',
@@ -51,7 +56,7 @@ class DatabaseSeeder extends Seeder
             'driver_id' => 2,  
         ]);
         \App\Models\Vehicle::create([
-            'type' => 'plane',
+            'type' => 'Plane',
             'capacity' => '100',
             'currentlocation' => 'streetAddress',
             'status' => 'Available',

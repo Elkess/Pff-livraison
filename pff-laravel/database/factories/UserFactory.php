@@ -21,7 +21,6 @@ class UserFactory extends Factory
             'lastname' => $this->faker->lastName(),
             'role' => $this->faker->randomElement(['driver', 'client']),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
-            'address' => $this->faker->address(),
             'phonenumber' => $this->faker->e164PhoneNumber(),
             'email' => $this->faker->safeEmail(),
         ];

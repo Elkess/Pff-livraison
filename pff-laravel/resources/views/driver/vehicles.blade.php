@@ -2,12 +2,12 @@
 @section('title', 'Vehicles')
 
 @section('content')
-    <div class="container">
+    <div class="card">
         <h2 class="text-center m-5">Vehicles</h2>
         <div class="row">
             @foreach ($vehicles as $vehicle)
                 <div class="col-md-4 mb-4">
-                    <div class="card shadow ">
+                    <div class="card mx-3 shadow-lg  ">
                         <div class="h-50">
                             <img @switch($vehicle->type)
                                         @case('Car')
@@ -20,7 +20,7 @@
                                         src="https://laquotidienne.ma/uploads/actualites/60375da87f5da.jpg"
                                         @break
                                         @case('Plane')
-                                        src="https://i.insider.com/62e8eef760b200001871e742?width=1136&format=jpeg"
+                                        src="https://static5.depositphotos.com/1007330/475/i/450/depositphotos_4755326-stock-photo-white-passenger-plane-landing-away.jpg"
                                         @break
                                     @default
                                 @endswitch
@@ -81,9 +81,14 @@
                                                         {{ $errors }}
                                                     @enderror
                                                     <div class="m-3">
+                                                        <label class="form-label">Sujet:</label>
+                                                        <input class="form-control" name="subject" placeholder="subject"
+                                                            required />
+                                                    </div>
+                                                    <div class="m-3">
                                                         <label class="form-label">Vehicle Location:</label>
                                                         <input class="form-control" name="location"
-                                                            placeholder="Vehicle Location" required/>
+                                                            placeholder="Vehicle Location" required />
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button class="btn btn-danger" type="submit">Submit</button>

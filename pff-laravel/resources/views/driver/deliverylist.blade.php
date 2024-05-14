@@ -1,18 +1,44 @@
 @extends('layout.master')
-@section('title', 'DELIVERIES')
+@section('title', 'Main Page')
 
 @section('content')
-    <div class="container">
+<style>
+    .custom-table {
+    width: 100%;
+    border-collapse: collapse;
+    }
+
+    .custom-table th,
+    .custom-table td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    }
+
+    .custom-table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+    }
+
+    .custom-table tbody tr:nth-child(odd) {
+    background-color: #f2f2f2;
+    }
+
+    .custom-table tbody tr:hover {
+    background-color: #ddd;
+    }
+    </style>
+    <div class="card m-5 ">
         <h2 class="text-center m-5">Deliveries</h2>
         <div class="d-flex flex-column ms-5 justify-content-center">
-            <table class="table table-hover table-responsive table-hover align-self-center table-info-subtle w-75">
+            <table class="custom-table table-hover table-responsive table-hover align-self-center  w-75">
                 <thead>
-                    <tr class="table-success text-center ">
+                    <tr class="text-center" style="background-color: red">
                         <th class="text-nowrap ">Delivery ID</th>
-                        <th>Client</th>
-                        <th>Pickup Location</th>
-                        <th>Dropoff Location</th>
-                        <th>Action</th>
+                        <th>Client </th>
+                        <th>Pickup Location </th>
+                        <th>Dropoff Location </th>
+                        <th>Action </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -24,16 +50,14 @@
                                 <td class="text-wrap">{{ $delivery->pickuplocation }}</td>
                                 <td class="text-wrap">{{ $delivery->dropofflocation }}</td>
                                 <td>
-                                    <!-- Button trigger modal -->
                                     <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                         data-bs-target="#staticBackdrop">
                                         Accept
                                     </button>
-
-                                    <!-- Modal -->
                                     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static"
                                         data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
                                         aria-hidden="true">
+
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header">

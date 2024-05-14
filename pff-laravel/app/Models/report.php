@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Report extends Model
 {
     use HasFactory;
-    protected $fillable = ['location','description','vehicle_id'];
+    protected $fillable = ['location','description','subject','vehicle_id'];
     protected $primaryKey= 'report_id';
     
 }

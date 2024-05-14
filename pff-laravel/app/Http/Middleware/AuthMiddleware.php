@@ -18,21 +18,21 @@ class AuthMiddleware
     public function handle(Request $request, Closure $next)
     {
         if (Auth::check()) {
-            switch(Auth::user()->role){
+            switch (Auth::user()->role) {
                 case 'admin':
                     return redirect(route('admin'));
                     break;
                 case 'driver':
                     return
-                    redirect(route('driver.index'));
+                        redirect(route('driver.index'));
+                    return $next($request);
                     break;
-                    default:
-                    return redirect(route('auth.login'))->with('Error','Unexpected err ');
+                default:
+                session()->flush();
+                    redirect(route('auth.login'))->with('Error', 'Unexpected err ');
+                    return $next($request);
                     break;
-
-                }
-        }else{
-            return $next($request);
+            }
         }
     }
 }

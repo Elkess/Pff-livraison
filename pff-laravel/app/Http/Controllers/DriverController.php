@@ -10,10 +10,6 @@ use Illuminate\Http\Request;
 
 class DriverController extends Controller
 {
-    public function index()
-    {
-        return view('driver.index');
-    }
     public function deliveries()
     {
         $driver = auth()->user();
@@ -21,7 +17,7 @@ class DriverController extends Controller
         $Delivered = Delivery::where('driver_id', $driver->user_id)->where('status', 'Delivered')->get();
         return view('driver.mydeliveries', compact('Deliveries', 'Delivered'));
     }
-    public function deliveryList()
+        public function deliveryList()
     {
         $driver = auth()->user();
         $vehicles = Vehicle::where('driver_id', $driver->user_id)->get();
@@ -35,24 +31,6 @@ class DriverController extends Controller
         return view('driver.vehicles', compact('driver', 'vehicles'));
     }
 
-    public function reportVehicle(Request $request)
-    {
-        $validated = $request->validate([
-            'description' => 'required',
-            'location' => 'required',
-        ]);
-
-        if ($validated) {
-            Report::create($request->all());
-            $vehicle = Vehicle::where('vehicle_id', $request->vehicle_id)->get()[0];
-            $vehicle->update([
-                'status' => 'Reported'
-            ]);
-            return redirect(route('driver.vehicles'));
-        } else {
-            return redirect(route('driver.vehicles'))->withErrors('err', 'Fill All the Fields');
-        }
-    }
     public function acceptDelivery(Request $request, $id)
     {
         $delivery = Delivery::find($id);
@@ -111,10 +89,37 @@ class DriverController extends Controller
                 'status' => 'Delivered',
                 'dropofftime' => Carbon::now()
             ]);
-            Vehicle::where('vehicle_id', $delivery->vehicle_id)->get()->update([
+            $v = Vehicle::where('vehicle_id', $delivery->vehicle_id)->get()[0];
+            $v->update([
                 'status' => 'Available'
             ]);
             return redirect(route('driver.deliveries'));
+        }
+    }
+    public function reports()
+    {
+        return view('driver.reports', ['reports' =>  Report::where('vehicle_id', auth()->user()->user_id)->get()
+        ]);
+    }
+    public function reportVehicle(Request $request)
+    {
+        $validated = $request->validate([
+            'description' => 'required',
+            'subject' => 'required',
+            'location' => 'required',
+        ]);
+
+        if ($validated) {
+            Report::create($request->all());
+            $delivery =Delivery::where('vehicle_id',$request->vehicle_id);
+            dd($delivery);
+            $vehicle = Vehicle::where('vehicle_id', $request->vehicle_id)->get()[0];
+            $vehicle->update([
+                'status' => 'Reported'
+            ]);
+            return redirect(route('driver.vehicles'));
+        } else {
+            return redirect(route('driver.vehicles'))->withErrors('err', 'Fill All the Fields');
         }
     }
 }

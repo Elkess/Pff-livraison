@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id('report_id');
             $table->string('description');
             $table->string('location');
+            $table->string('subject');
             $table->unsignedBigInteger('vehicle_id')->nullable();
             $table->foreign('vehicle_id')->references('vehicle_id')->on('vehicles');
             $table->timestamps();

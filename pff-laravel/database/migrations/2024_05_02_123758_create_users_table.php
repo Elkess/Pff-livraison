@@ -18,7 +18,6 @@ return new class extends Migration
             $table->enum('role', ['admin', 'driver', 'client']);
             $table->string('Firstname');
             $table->string('Lastname');
-            $table->string('address');
             $table->bigInteger('phonenumber');
             $table->string('email');
             $table->string('password');
