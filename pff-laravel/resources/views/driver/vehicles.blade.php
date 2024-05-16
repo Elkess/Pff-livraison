@@ -7,7 +7,7 @@
         <div class="row">
             @foreach ($vehicles as $vehicle)
                 <div class="col-md-4 mb-4">
-                    <div class="card mx-3 shadow-lg  ">
+                    <div class="card mx-3 shadow-lg">
                         <div class="h-50">
                             <img @switch($vehicle->type)
                                         @case('Car')
@@ -26,36 +26,43 @@
                                 @endswitch
                                 class="card-img-top" alt="not loaded" />
                         </div>
-                        <div class="card-body">
+                        <div class="card-header ">
+
                             <h5 class="card-title"> Vehicle ID : {{ $vehicle->vehicle_id }}</h5>
                             <h6 class="card-subtitle mb-2 text-muted"> Vehicle Type : {{ $vehicle->type }}</h6>
+                        </div>
+                        <div class="card-body">
                             <p> Status :
                                 <span
                                     @switch($vehicle->status)
                                     @case('Available')
-                                    class="btn btn-success"
+                                    class="badge bg-success"
                                     @break
                                     @case('Reported')
-                                    class="btn btn-warning"
+                                    class="badge bg-warning"
                                     @break
                                     @case('Damaged')
-                                    class="btn btn-danger"
+                                    class="badge bg-danger"
                                     @break
                                     @case('in Maintenance')
-                                    class="btn btn-warning"
+                                    class="badge bg-info"
                                     @break
                                     @case('in Transit')
-                                    class="btn btn-primary"
+                                    class="badge bg-primary"
                                     @break 
                                     @default
+                                    class='btn  '
                                     @endswitch>{{ $vehicle->status }}</span>
                             </p>
-                            <p class="card-text">Location : {{ $vehicle->currentlocation }}</p>
+                            Location :
+                            <textarea class="card-text form-control badge bg-primary-subtle text-black-50 fs-6 " disabled> {{ $vehicle->currentlocation }}</textarea>
                             @if ($vehicle->status != 'Reported')
+                            <div class="row m-2">
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                    data-bs-target="#reportModal{{ $vehicle->vehicle_id }}">
-                                    Report Vehicle
-                                </button>
+                                data-bs-target="#reportModal{{ $vehicle->vehicle_id }}">
+                                Report Vehicle
+                            </button>
+                        </div>
                                 <div class="modal fade" id="reportModal{{ $vehicle->vehicle_id }}" data-bs-backdrop="static"
                                     data-bs-keyboard="false" tabindex="1"
                                     aria-labelledby="reportModalLabel{{ $vehicle->vehicle_id }}" aria-hidden="true">

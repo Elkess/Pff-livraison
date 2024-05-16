@@ -1,34 +1,6 @@
 @extends('layout.auth')
 @section('form')
 
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    {{-- 
-<div class="container mt-5">
-    <form method="POST" class="card" action="/login">
-            @csrf
-            <div class="card-body m-5 ">
-                 
-                <div class="mb-3">
-                    <label class="form-label">Email address</label>
-                    <input type="email" placeholder="Email" name="email"class="form-control" >
-               
-                </div>
-                <span>
-                </span>
-                <div class="mb-3">
-                    <label   class="form-label">Password </label>
-                    <input type="password" class="form-control"name="password" placeholder="Password">
-                    @error('password')
-                        <span class=" text-danger ">{{ $message }}</span>
-                    @enderror
-                </div>
-                 <div class="mb-3 form-check">
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </div>
-            </form>
-    </div>
-@endsection --}}
     <section>
         <div class="container py-5 h-100">
             <div class="row d-flex justify-content-center align-items-center h-100">
@@ -50,19 +22,19 @@
                                         
                                         <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Sign into your account
                                         </h5>
-                                        <div class="form-outline mb-4">
-                                            <label class="form-label" for="form2Example17">Email address</label>
-                                            <input type="email" name="email" id="form2Example17"
-                                                class="form-control form-control-lg" />
+                                        <div class="form-outline form-floating  mb-4">
+                                            <input type="email" name="email"
+                                            class="form-control form-control-lg" placeholder="Email"/>
+                                            <label class="form-label" >Email address</label>
                                             @error('email')
                                                 <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
 
-                                        <div class="form-outline mb-4">
-                                            <label class="form-label" for="form2Example27">Password</label>
-                                            <input type="password" name="password" id="form2Example27"
-                                                class="form-control form-control-lg" />
+                                        <div class="form-outline form-floating  mb-4">
+                                            <input type="password" name="password" placeholder="habibi"
+                                            class="form-control form-control-lg" />
+                                            <label class="form-label" >Password</label>
                                             @error('password')
                                                 <span class="text-danger">{{ $message }}</span>
                                             @enderror

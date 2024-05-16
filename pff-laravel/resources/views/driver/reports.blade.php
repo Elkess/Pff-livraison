@@ -1,11 +1,12 @@
 @extends('layout.master')
+@section('title','Reports')
 @section('content')
     <div class="card">
-        <h2 class="text-center m-5">Vehicles</h2>
-        <div class="row">
+        <h2 class="text-center m-5">Report History</h2>
+        <div class="d-flex flex-wrap justify-content-center  ">
             @forelse ($reports as $report)
-                <div class="col-md-4 mb-4 shadow-sm ">
-                    <div class="card">
+                <div class="m-3  mb-4 shadow-sm ">
+                    <div class="card ">
                         <div class="card-header">
                             Report : {{ $report->report_id }}
                         </div>

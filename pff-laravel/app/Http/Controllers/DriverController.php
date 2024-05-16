@@ -13,16 +13,19 @@ class DriverController extends Controller
     public function deliveries()
     {
         $driver = auth()->user();
-        $Deliveries = Delivery::where('driver_id', $driver->user_id)->where('status', '<>', 'Delivered')->get();
+        $Deliveries = Delivery::where('driver_id', $driver->user_id)->where('status', '<>', 'Delivered')->where('status', '<>', 'Pending')->get();
+        $Pendings = Delivery::where('driver_id', $driver->user_id)->where('status', 'Pending')->get();
+
         $Delivered = Delivery::where('driver_id', $driver->user_id)->where('status', 'Delivered')->get();
-        return view('driver.mydeliveries', compact('Deliveries', 'Delivered'));
+        // dd($Pendings);
+        return view('driver.deliveries', compact('Deliveries', 'Delivered', 'Pendings'));
     }
-        public function deliveryList()
+    public function orders()
     {
         $driver = auth()->user();
         $vehicles = Vehicle::where('driver_id', $driver->user_id)->get();
         $deliveries = Delivery::paginate(20);
-        return view('driver.deliverylist', compact('deliveries', 'vehicles'));
+        return view('driver.orders', compact('deliveries', 'vehicles'));
     }
     public function vehicles()
     {
@@ -86,7 +89,7 @@ class DriverController extends Controller
             return redirect(route('driver.deliveries'))->with('Error', 'PICK UP DELIVERY FIRST');
         } else {
             $delivery->update([
-                'status' => 'Delivered',
+                'status' => 'Pending',
                 'dropofftime' => Carbon::now()
             ]);
             $v = Vehicle::where('vehicle_id', $delivery->vehicle_id)->get()[0];
@@ -98,7 +101,8 @@ class DriverController extends Controller
     }
     public function reports()
     {
-        return view('driver.reports', ['reports' =>  Report::where('vehicle_id', auth()->user()->user_id)->get()
+        return view('driver.reports', [
+            'reports' =>  Report::all()
         ]);
     }
     public function reportVehicle(Request $request)
@@ -110,13 +114,22 @@ class DriverController extends Controller
         ]);
 
         if ($validated) {
-            Report::create($request->all());
-            $delivery =Delivery::where('vehicle_id',$request->vehicle_id);
-            dd($delivery);
-            $vehicle = Vehicle::where('vehicle_id', $request->vehicle_id)->get()[0];
+            $delivery = Delivery::where('vehicle_id', $request->vehicle_id)->get()->first();
+
+            $vehicle = Vehicle::where('vehicle_id', $request->vehicle_id)->get()->first();
+            // dd($request->all());
+            if ($delivery!= null) {   
+                $delivery->update([
+                    'status' => 'Ready',
+                    'driver_id' => 1,
+                    'pickuplocation' => $request->location,
+                    'pickuptime' => null
+                ]);
+            }
             $vehicle->update([
                 'status' => 'Reported'
             ]);
+            Report::create([...$request->all(), 'status' => 'Report Sent To Admin']);
             return redirect(route('driver.vehicles'));
         } else {
             return redirect(route('driver.vehicles'))->withErrors('err', 'Fill All the Fields');

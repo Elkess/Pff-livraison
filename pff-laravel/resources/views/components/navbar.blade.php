@@ -29,10 +29,10 @@
 
                            @case('driver')
                                <li class="nav-item">
-                                   <a class="nav-link" href="{{ route('driver.index') }}">Dashboard</a>
+                                   <a class="nav-link" href="{{ route('driver.deliveries') }}">Dashboard</a>
                                </li>
                                <li class="nav-item">
-                                   <a class="nav-link" href="{{ route('driver.deliverylist') }}">Delivery List</a>
+                                   <a class="nav-link" href="{{ route('driver.orders') }}">Delivery List</a>
                                </li>
                                <li class="nav-item">
                                    <a class="nav-link" href="{{ route('driver.deliveries') }}">My Deliveries</a>

@@ -26,8 +26,8 @@ Route::middleware([DriverMiddleware::class])->group(function () {
     Route::prefix('Driver')->group(function () {
 
         Route::get('Vehicles', [DriverController::class, 'vehicles'])->name('driver.vehicles');
-        Route::get('Deliveries', [DriverController::class, 'deliveryList'])->name('driver.deliverylist');
-        Route::get('MyDeliveries', [DriverController::class, 'deliveries'])->name('driver.deliveries');
+        Route::get('Deliveries', [DriverController::class, 'orders'])->name('driver.orders');
+        Route::get('deliveries', [DriverController::class, 'deliveries'])->name('driver.deliveries');
         Route::get('Reports', [DriverController::class, 'reports'])->name('driver.reports');
         Route::post('report/{id}', [DriverController::class, 'reportVehicle'])->name('report');
         Route::patch('dropoff/{id}', [DriverController::class, 'dropoffDelivery'])->name('dropoff');
