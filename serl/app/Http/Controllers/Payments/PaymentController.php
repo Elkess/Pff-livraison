@@ -12,6 +12,11 @@ use Carbon\Carbon;
 
 class PaymentController extends Controller
 {
+    public function index(){
+        $payments = Payment::all();
+        return view('admin.payments', compact('payments'));
+    }
+    
     public function create(Request $request)
     {
         // Retrieve the order details based on the request

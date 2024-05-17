@@ -1,78 +1,49 @@
-<!DOCTYPE html>
-<html lang="en">
+<x-layout class="bg-blue-100 text-blue-900">
+    <div class=" mx-[25%] w-[50%] p-5 rounded-lg border bg-slate-50">
+        <h1 class="text-xl font-bold mb-4 text-black">User Details</h1>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Show User</title>
-    <style>
-        /* CSS for show.blade.php */
-        .user-details {
-            max-width: 400px;
-            margin: 0 auto;
-            padding: 20px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            background-color: #f9f9f9;
-        }
+        <div class="">
+            <p class="mb-4  pb-2 text-blue-700">
+                <label for="name" class=" font-bold text-black">Name:</label>
+                
+                {{ $user->name }}</p>
+        </div>
 
-        .user-details h1 {
-            text-align: center;
-        }
+        <div class="">
+            <p class="mb-4  pb-2 text-blue-700">
+                <label for="email" class=" font-bold text-black">Email:</label>
+                
+                {{ $user->email }}</p>
+        </div>
 
-        .user-details label {
-            margin-bottom: 5px;
-            display: block;
-            font-weight: bold;
-        }
+        <div class="">
+            <p class="mb-4  pb-2 text-blue-700">
+                <label for="password" class=" font-bold text-black">Password:</label>
+                
+                {{ $user->password }}</p>
+        </div>
 
-        .user-details p {
-            margin-bottom: 10px;
-        }
+        <div class="">
+            <p class="mb-4  pb-2 text-blue-700">
+                <label for="phoneNumber" class=" font-bold text-black">Phone Number:</label>
+                
+                {{ $user->phoneNumber }}</p>
+        </div>
 
-        .user-details .btn {
-            display: block;
-            width: 100%;
-            padding: 10px;
-            background-color: #4caf50;
-            color: #fff;
-            border: none;
-            border-radius: 3px;
-            cursor: pointer;
-            text-align: center;
-            transition: background-color 0.3s;
-            text-decoration: none;
-        }
+        <div class="">
+            <p class="mb-4  pb-2 text-blue-700">
+                <label for="address" class=" font-bold text-black">Address:</label>
+                
+                {{ $user->address }}</p>
+        </div>
 
-        .user-details .btn:hover {
-            background-color: #45a049;
-        }
-    </style>
-</head>
+        <div class="">
+            <p class="mb-4  pb-2 text-blue-700">
+                <label for="role" class=" font-bold text-black">Role:</label>
+                
+                {{ $user->role }}</p>
+        </div>
 
-<body>
-    <div class="user-details">
-        <h1>User Details</h1>
-
-        <label for="name">Name:</label>
-        <p>{{ $user->name }}</p>
-
-        <label for="email">Email:</label>
-        <p>{{ $user->email }}</p>
-        <label for="password">Password:</label>
-        <p>{{ $user->password }}</p>
-
-        <label for="phoneNumber">Phone Number:</label>
-        <p>{{ $user->phoneNumber }}</p>
-
-        <label for="adress">Address:</label>
-        <p>{{ $user->adress }}</p>
-
-        <label for="role">Role:</label>
-        <p>{{ $user->role }}</p>
-
-        <a href="{{ route('admin.users.edit', $user->id) }}" class="btn">Edit User</a>
+        <a href="{{ route('admin.users.edit', $user->id) }}" class="btn bg-blue-600 text-white px-4 py-2 rounded inline-block">Edit User</a>
     </div>
-</body>
-
-</html>
+</x-layout>

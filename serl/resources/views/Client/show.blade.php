@@ -6,80 +6,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>All orders</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f0f0f0;
-        }
-
-        .container {
-            max-width: 800px;
-            margin: 50px auto;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        h1 {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        table th,
-        table td {
-            padding: 8px;
-            border-bottom: 1px solid #ddd;
-            text-align: left;
-        }
-
-        table th {
-            background-color: #f2f2f2;
-        }
-
-        table tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
-    </style>
+    <!-- Include Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 
-<body>
-    <div class="container">
-        <h1>All Orders</h1>
-        <table>
-            <thead>
-                <tr>
-                    <th>Order Number</th>
-                    <th>Pickup Location</th>
-                    <th>Pickup Time</th>
-                    <th>Dropoff Location</th>
-                    <th>Dropoff Time</th>
-                    <th>Status</th>
-                    <th>Client ID</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($orders as $order)
-                    <tr>
-                        <td>{{ $order->order_number }}</td>
-                        <td>{{ $order->pickUpLocation }}</td>
-                        <td>{{ $order->pickUpTime }}</td>
-                        <td>{{ $order->dropOffLocation }}</td>
-                        <td>{{ $order->dropOffTime }}</td>
-                        <td>{{ $order->status }}</td>
-                        <td>{{ $order->client_id }}</td>
+<body class="bg-gray-100 font-sans">
+    <x-layout>
+        <div class="container mx-auto my-10 px-4">
+            <h1 class="text-2xl font-bold text-center mb-6">All Orders</h1>
+        <div class="overflow-x-auto">
+            <table class="w-full table-auto border-collapse border border-gray-200">
+                <thead>
+                    <tr class="bg-gray-100">
+                        <th class="px-4 py-2">Order Number</th>
+                        <th class="px-4 py-2">Pickup Location</th>
+                        <th class="px-4 py-2">Pickup Time</th>
+                        <th class="px-4 py-2">Dropoff Location</th>
+                        <th class="px-4 py-2">Dropoff Time</th>
+                        <th class="px-4 py-2">Status</th>
+                        <th class="px-4 py-2">Client ID</th>
                     </tr>
-                @endforeach
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    @foreach ($orders as $order)
+                        <tr class="{{ $loop->even ? 'bg-gray-50' : 'bg-white' }}">
+                            <td class="border px-4 py-2">{{ $order->order_number }}</td>
+                            <td class="border px-4 py-2">{{ $order->pickUpLocation }}</td>
+                            <td class="border px-4 py-2">{{ $order->pickUpTime }}</td>
+                            <td class="border px-4 py-2">{{ $order->dropOffLocation }}</td>
+                            <td class="border px-4 py-2">{{ $order->dropOffTime }}</td>
+                            <td class="border px-4 py-2">{{ $order->status }}</td>
+                            <td class="border px-4 py-2">{{ $order->client_id }}</td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
     </div>
+</x-layout>
 </body>
 
 </html>

@@ -22,22 +22,23 @@ use App\Http\Controllers\Payments\PaymentController;
 |
 */
 Route::get('/',function(){return view('welcome');});
+Route::get('/admin',function(){return view('Admin.admin');});
 
 // user 
 
-Route::get('/users',[UserController::class,'index'])
+Route::get('/admin/users',[UserController::class,'index'])
 ->name('admin.users.index');
-Route::get('/users/create',[UserController::class,'create'])
+Route::get('/admin/users/create',[UserController::class,'create'])
 ->name('admin.users.create');
-Route::post('/users',[UserController::class,'store'])
+Route::post('/admin/users',[UserController::class,'store'])
 ->name('admin.users.store');
-Route::get('/users/{user}',[UserController::class,'show'])
+Route::get('/admin/users/{user}',[UserController::class,'show'])
 ->name('admin.users.show');
-Route::get('/users/{user}/edit',[UserController::class,'edit'])
+Route::get('/admin/users/{user}/edit',[UserController::class,'edit'])
 ->name('admin.users.edit');
-Route::put('/users/{user}',[UserController::class,'update'])
+Route::put('/admin/users/{user}',[UserController::class,'update'])
 ->name('admin.users.update');
-Route::delete('/users/{user}',[UserController::class,'destroy'])
+Route::delete('/admin/users/{user}',[UserController::class,'destroy'])
 ->name('admin.users.destroy');
 
 // delivery
@@ -75,7 +76,7 @@ Route::delete('/admin/vehicles/{vehicle}',[VehicleController::class,"destroy"])
 ->name('admin.vehicles.destroy');
 
 // order
-Route::get('order/all',[OrderController::class,'ShowOrders'])->name("ShowOrders");
+Route::get('admin/orders',[OrderController::class,'ShowOrders'])->name("ShowOrders");
 Route::get('/order', [OrderController::class, 'showForm'])->name('order.form');
 Route::post('/order/place', [OrderController::class, 'placeOrder'])->name('order.place');
 
@@ -101,6 +102,10 @@ Route::get('/payment/paypal/cancel',[PaypalController::class,'cancel'])
 ->name('payment.paypal.cancel');
 
 // Payment  with Card
+
+
+Route::get('/admin/payments', [PaymentController::class, 'index'])->name('admin.payments.index');
+
 Route::get('/payments/create', [PaymentController::class, 'create'])->name('payments.create');
 Route::post('/payments/process/{order}', [PaymentController::class, 'processPayment'])->name('payments.process');
 Route::get('/client/home/{order}', [ClientController::class, 'index'])->name('client.index');

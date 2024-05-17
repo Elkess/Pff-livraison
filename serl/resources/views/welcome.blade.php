@@ -6,11 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Payneb Integration </title>
+    @vite('resources/css/app.css')
 
 
 </head>
 
-<body class="antialiased">
+<body class="text-red-500 text-3xl font-semibold">
+
     <h1>Saaad Page</h1>
 
 

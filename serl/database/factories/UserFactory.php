@@ -26,7 +26,7 @@ class UserFactory extends Factory
             'password' => 'admin', // password
             'remember_token' => Str::random(10),
             'phoneNumber'=>fake()->numerify('##########'),
-            'adress'=>fake()->realText(15),
+            'adress'=>fake()->realText(20),
             'role'=>fake()->randomElement($roles),
         ];
     }

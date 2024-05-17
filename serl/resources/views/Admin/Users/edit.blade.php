@@ -1,132 +1,73 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit User</title>
-    <style>
-        /* CSS for Edit User page */
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f7f7f7;
-            margin: 0;
-            padding: 0;
-        }
-
-        .form-container {
-            max-width: 400px;
-            margin: 0 auto;
-            padding: 20px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            background-color: #fff;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        h1 {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 5px;
-        }
-
-        input[type="text"],
-        input[type="email"],
-        input[type="password"],
-        select {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 10px;
-            border: 1px solid #ccc;
-            border-radius: 3px;
-            box-sizing: border-box;
-        }
-
-        select {
-            height: 40px;
-        }
-
-        .error-message {
-            color: #ff0000;
-            margin-top: 5px;
-        }
-
-        button {
-            width: 100%;
-            padding: 10px;
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            border-radius: 3px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        button:hover {
-            background-color: #0056b3;
-        }
-    </style>
-</head>
-
-<body>
-    <div class="form-container">
-        <h1>Edit User</h1>
+<x-layout class="bg-dcf4ff">
+    <div class="form-container bg-white p-8 rounded-lg shadow-lg">
+        <h1 class="text-3xl font-bold mb-6">Edit User</h1>
 
         @foreach ($errors->all() as $error)
-        <div class="error-message">{{ $error }}</div>
+            <div class="error-message">{{ $error }}</div>
         @endforeach
 
-        <form method="POST" action="{{ route('admin.users.update', $user->id) }}">
+        <form method="POST" action="{{ route('admin.users.update', $user->id) }}" class="space-y-4">
             @csrf
             @method('PUT')
 
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" value="{{ old('name', $user->name) }}">
+            <br>
+            <label for="name" class="text-xl">Name:</label>
+
+            <input type="text" id="name" name="name" value="{{ old('name', $user->name) }}"
+                class="border rounded-md p-1 hover:text-blue-600">
             @error('name')
-            <div class="error-message">{{ $message }}</div>
+                <div class="error-message">{{ $message }}</div>
             @enderror
 
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" value="{{ old('email', $user->email) }}">
+            <br>
+            <label for="email" class="text-xl">Email:</label>
+
+            <input type="email" id="email" name="email" value="{{ old('email', $user->email) }}"
+                class="border rounded-md p-1 hover:text-blue-600">
             @error('email')
-            <div class="error-message">{{ $message }}</div>
+                <div class="error-message">{{ $message }}</div>
             @enderror
 
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" value="{{ old('password') }}">
+            <br>
+            <label for="password" class="text-xl">Password:</label>
+
+            <input type="password" id="password" name="password" value="{{ old('password') }}"
+                class="border rounded-md p-1 hover:text-blue-600">
             @error('password')
-            <div class="error-message">{{ $message }}</div>
+                <div class="error-message">{{ $message }}</div>
             @enderror
 
-            <label for="phoneNumber">Phone Number:</label>
-            <input type="text" id="phoneNumber" name="phoneNumber" value="{{ old('phoneNumber', $user->phoneNumber) }}">
+            <br>
+            <label for="phoneNumber" class="text-xl">Phone Number:</label>
+
+            <input type="text" id="phoneNumber" name="phoneNumber"
+                value="{{ old('phoneNumber', $user->phoneNumber) }}" class="border rounded-md p-1 hover:text-blue-600">
             @error('phoneNumber')
-            <div class="error-message">{{ $message }}</div>
+                <div class="error-message">{{ $message }}</div>
             @enderror
 
-            <label for="adress">Address:</label>
-            <input type="text" id="adress" name="adress" value="{{ old('adress', $user->adress) }}">
+            <br>
+            <label for="adress" class="text-xl">Address:</label>
+
+            <input type="text" id="adress" name="adress" value="{{ old('adress', $user->adress) }}"
+                class="border rounded-md p-1 hover:text-blue-600">
             @error('adress')
-            <div class="error-message">{{ $message }}</div>
+                <div class="error-message">{{ $message }}</div>
             @enderror
 
-            <label for="role">Role:</label>
-            <select name="role" id="role">
+            <br>
+            <label for="role" class="text-xl">Role:</label>
+            <select name="role" id="role" class="border rounded-md p-1 hover:text-blue-600">
                 <option value="Admin" {{ old('role', $user->role) == 'Admin' ? 'selected' : '' }}>Admin</option>
                 <option value="Driver" {{ old('role', $user->role) == 'Driver' ? 'selected' : '' }}>Driver</option>
                 <option value="Client" {{ old('role', $user->role) == 'Client' ? 'selected' : '' }}>Client</option>
             </select>
             @error('role')
-            <div class="error-message">{{ $message }}</div>
+                <div class="error-message">{{ $message }}</div>
             @enderror
-
-            <button type="submit">Update User</button>
+            <br><br>
+            <button type="submit" class=" bg-blue-600 hover:bg-0008eb text-white font-bold py-2 px-4 rounded">Update
+                User</button>
         </form>
     </div>
-</body>
-
-</html>
+</x-layout>
