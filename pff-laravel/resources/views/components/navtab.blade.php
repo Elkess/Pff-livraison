@@ -1,12 +1,13 @@
 <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-gradient card me-2 " style='background-color: #006FFF'>
-   <style>
-    .btn-third{
-        background-color: orange
-    }
-    .btn-third:hover{
-        background-color: #ffc252
-    }
-   </style>
+    <style>
+        .btn-third {
+            background-color: orange
+        }
+
+        .btn-third:hover {
+            background-color: #ffc252
+        }
+    </style>
     <div class="d-flex flex-column align-items-center align-items-lg-start px-3 pt-2 min-vh-100">
         @auth
             @switch(auth()->user()->role)
@@ -20,22 +21,23 @@
                                 <img class=" img-fluid "
                                     src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnVqX139J07-6dpS6EjkVn8IAGUDFe9iAUDAKMBwK5KA&s' /></span>
                         </a>
-                        <li class="mt-3  btn btn-third  bg-gradient w-100"> {{-- style='background-color: #DCF4FF' --}}
-                            <a class="nav-link text-white" href={{ route('driver.orders') }}>
-                                Orders </a>
+                        <li class="mt-3 bg-body text-black bg-gradient w-100">
+                            <a class="nav-link " href={{ route('driver.orders') }}>
+                                Orders
+                            </a>
                         </li>
-                        <li type="button" class=" mt-3  btn btn-third bg-gradient w-100"> {{-- style='background-color: #DCF4FF' --}}
-                            <a class="nav-link text-white " href={{ route('driver.deliveries') }}>
+                        <li class="mt-3 bg-body bg-gradient w-100">
+                            <a class="nav-link" href={{ route('driver.deliveries') }}>
                                 Deliveries
                             </a>
                         </li>
-                        <li class=" btn btn-third bg-gradient  mt-3  w-100"> {{-- style='background-color: #DCF4FF' --}}
-                                <a class="nav-link text-white"href={{ route('driver.vehicles') }}>
+                        <li class="mt-3 bg-body bg-gradient w-100">
+                            <a class="nav-link"href={{ route('driver.vehicles') }}>
                                 Vehicles
                             </a>
                         </li>
-                        <li class="mt-3  btn btn-third bg-gradient w-100"> {{-- style='background-color: #DCF4FF' --}}
-                            <a class="nav-link text-white " href={{ route('driver.reports') }}>
+                        <li class="mt-3 bg-body bg-gradient w-100">
+                            <a class="nav-link" href={{ route('driver.reports') }}>
                                 Reports
                             </a>
                         </li>

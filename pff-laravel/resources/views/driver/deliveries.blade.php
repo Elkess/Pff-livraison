@@ -16,7 +16,7 @@
                             </h6>
                         </div>
 
-                        <div class="card-body text-wrap ">
+                        <div class="card-body text-wrap text-center ">
                             <h6 class="card-text ">Pickup Location:
                                 <span class="badge bg-body-secondary  fs-6 text-black text-wrap">
                                     {{ $delivery->pickuplocation }}
@@ -100,7 +100,7 @@
                                         action={{ route('cancel', $delivery->delivery_id) }}>
                                         @csrf
                                         @method('PATCH')
-                                        <button class="btn btn-warning " type="submit">Cancel</button>
+                                        <button class="btn btn-warning" type="submit">Cancel</button>
                                     </form>
                                 @endif
                             </div>
@@ -115,37 +115,7 @@
             </div>
         </div>
         <div class="card m-5">
-            <h2 class="text-center m-3">Pending Approval</h2>
-            @forelse ($Pendings as $pending)
-                <div class="accordion" id="accordionFlush">
-                    <div class="accordion-item">
-                        <h2 class="accordion-header" id="flush-heading{{ $pending->delivery_id }}">
-                            <button class="accordion-button fw-bolder  fs-4 collapsed bg-success-subtle  bg-opacity-25 " type="button"
-                                data-bs-toggle="collapse" data-bs-target="#flush-collapse{{ $pending->delivery_id }}"
-                                aria-expanded="false" aria-controls="flush-collapse{{ $pending->delivery_id }}">
-                                Delivery Number :{{ $pending->delivery_id }} </button>
-                        </h2>
-                        <div id="flush-collapse{{ $pending->delivery_id }}" class="accordion-collapse collapse show"
-                            aria-labelledby="flush-heading{{ $pending->delivery_id }}" data-bs-parent="#accordionFlush">
-                            <div class="accordion-body">
-                                <table class="table table-responsive ">
-                                    <thead>
-                                        <tr>
-                                            <th>A</th>
-                                            <th>B</th>
-                                        </tr>
-                                    </thead>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-         
-                </div>
-            @empty
-                <span class="text-center">
-                    everything Approved
-                </span>
-            @endforelse
+            <x-accordion :pendings="$Pendings" />
         </div>
         <div class="card m-5">
             <h2 class="text-center m-5">Completed Deliveries</h2>
