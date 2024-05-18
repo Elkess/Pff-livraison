@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\OrderController;
@@ -22,7 +23,8 @@ use App\Http\Controllers\Payments\PaymentController;
 |
 */
 Route::get('/',function(){return view('welcome');});
-Route::get('/admin',function(){return view('Admin.admin');});
+Route::get('/admin',[AdminController::class,'Reporting'])->name('admin');
+
 
 // user 
 

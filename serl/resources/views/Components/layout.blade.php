@@ -26,6 +26,13 @@
         <div class="bg-white pl-4 min-h-20 rounded-lg shadow-lg  flex mb-6">
             <img src="{{ asset('images/BestBrother.jpg') }}" class="border rounded-full w-10 h-10 mt-4" alt="Logo">
             <div class="mt-7 ml-8">
+                <a href="{{ route('admin') }}"
+                    class=" font-bold
+            mr-4
+            text-blue-600
+            hover:text-blue-400
+            ">Admin
+                    Panel</a>
                 <a href="{{ route('admin.users.index') }}"
                     class=" font-bold
             mr-4
@@ -37,7 +44,8 @@
             mr-4
             text-blue-600
             hover:text-blue-400">Deliveries</a>
-                <a href="{{ route('admin.payments.index') }}" class="font-bold
+                <a href="{{ route('admin.payments.index') }}"
+                    class="font-bold
             mr-4
             text-blue-600
             hover:text-blue-400">Payments</a>
@@ -46,8 +54,8 @@
             mr-4
             text-blue-600
             hover:text-blue-400">Vehicles</a>
-            
-            <a href="{{ route('ShowOrders') }}"
+
+                <a href="{{ route('ShowOrders') }}"
                     class=" font-bold
             mr-4
             text-blue-600
