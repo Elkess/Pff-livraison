@@ -14,7 +14,6 @@ class Delivery extends Model
         'driver_id',
         'vehicle_id',
         'pickuplocation',
-        'weight',
         'pickuptime',
         'dropofflocation',
         'dropofftime',
