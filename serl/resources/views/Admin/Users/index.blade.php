@@ -22,7 +22,7 @@
                         <td class="border border-black px-4 py-2">{{ $user->email }}</td>
                         <td class="border border-black px-4 py-2">{{ $user->password }}</td>
                         <td class="border border-black px-4 py-2">{{ $user->phoneNumber }}</td>
-                        <td class="border border-black px-4 py-2">{{ $user->address }}</td>
+                        <td class="border border-black px-4 py-2">{{ $user->adress }}</td>
                         <td class="border border-black px-4 py-2">{{ $user->role }}</td>
                         <td class="border border-black px-4 py-2">{{ $user->created_at }}</td>
                         <td class="border border-black px-4 py-2">{{ $user->updated_at }}</td>

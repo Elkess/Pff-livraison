@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Payneb Integration </title>
+    <title>SERL</title>
     @vite('resources/css/app.css')
 
 

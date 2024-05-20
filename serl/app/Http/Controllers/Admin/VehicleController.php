@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Models\User;
 use App\Models\Vehicle;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class VehicleController extends Controller
 {
@@ -70,7 +71,9 @@ class VehicleController extends Controller
      */
     public function edit(Vehicle $vehicle)
     {
-        return view('admin.vehicles.edit', compact('vehicle'));
+        
+        $drivers = User::where('role', 'Driver')->get();
+        return view('admin.vehicles.edit', compact('vehicle', 'drivers'));
     }
 
     /**

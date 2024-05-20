@@ -32,9 +32,9 @@
 
         <div class="">
             <p class="mb-4  pb-2 text-blue-700">
-                <label for="address" class=" font-bold text-black">Address:</label>
+                <label for="adress" class=" font-bold text-black">Address:</label>
                 
-                {{ $user->address }}</p>
+                {{ $user->adress }}</p>
         </div>
 
         <div class="">
