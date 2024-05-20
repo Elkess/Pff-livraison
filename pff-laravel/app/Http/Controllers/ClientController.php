@@ -2,20 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
 use Illuminate\Http\Request;
 
 class ClientController extends Controller
 {
-    public function index(){
-        return view('client.index');
-    }
-    public function create(){
-        return view('client.createorder');
-    }
-    public function store(Request $request){
-        $request->validate([
-            
-        ]);
-    }
+    public static function index(Order $order){
 
+        return view('client.home',['order'=>$order]);
+    }
 }
