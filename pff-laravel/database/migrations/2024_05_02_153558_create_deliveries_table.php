@@ -15,15 +15,15 @@ return new class extends Migration
     {
         Schema::create('deliveries', function (Blueprint $table) {
             $table->id('delivery_id');
-            $table->string('status');
+            $table->enum('status', ['Pending', 'In Transit', 'Delivered', 'Out for Delivery', 'Attempted Delivery', 'Returned to Sender', 'Delayed', 'On Hold', 'Failed', 'Canceled']);
             $table->string('pickuplocation');
             $table->dateTime('pickuptime')->nullable();
             $table->string('dropofflocation');
-            // $table->string('weight');
+            $table->string('weight')->nullable();
             $table->dateTime('dropofftime')->nullable();
             $table->unsignedBigInteger('client_id');
             $table->unsignedBigInteger('driver_id');
-            // $table->unsignedBigInteger('vehicle_id')->nullable();
+            $table->unsignedBigInteger('vehicle_id');
             $table->foreign('client_id')->references('user_id')->on('users');
             $table->foreign('driver_id')->references('user_id')->on('users');
             $table->foreign('vehicle_id')->references('vehicle_id')->on('vehicles');

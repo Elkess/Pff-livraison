@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\Admin\AdminController;
+use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PaypalController;
 use App\Http\Controllers\StripeController;
@@ -11,23 +12,16 @@ use App\Http\Controllers\Admin\DeliveryController;
 use App\Http\Controllers\Payments\PaymentController;
 
 
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\auth\AuthController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\DriverController;
 use App\Http\Controllers\FallbackController;
 use App\Http\Middleware\DriverMiddleware;
 
-// Route::get('/admin', [AuthController::class, 'admin'])->name('admin');
 Route::redirect('/', 'authenticate');
 Route::fallback(FallbackController::class);
 
-Route::prefix('Client')->group(function () {
-    Route::get('Dashboard', [ClientController::class, 'index'])->name('client.index');
-    Route::get('Dashboard', [ClientController::class, 'create'])->name('client.order');
-});
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
-
 Route::get('/authenticate', [AuthController::class, 'loginPage'])->name('auth.login'); #->middleware('login');
 Route::get('/signup', [AuthController::class, 'signupPage'])->name('auth.signup');
 Route::post('/login', [AuthController::class, 'login']);
@@ -35,7 +29,6 @@ Route::post('/signup', [AuthController::class, 'signup']);
 
 Route::middleware([DriverMiddleware::class])->group(function () {
     Route::prefix('Driver')->group(function () {
-
         Route::get('Vehicles', [DriverController::class, 'vehicles'])->name('driver.vehicles');
         Route::get('Deliveries', [DriverController::class, 'orders'])->name('driver.orders');
         Route::get('deliveries', [DriverController::class, 'deliveries'])->name('driver.deliveries');
@@ -48,16 +41,6 @@ Route::middleware([DriverMiddleware::class])->group(function () {
     });
 });
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 Route::get('/admin', [AdminController::class, 'Reporting'])->name('admin');
 
 
@@ -138,9 +121,8 @@ Route::get('/payment/paypal/success', [PaypalController::class, 'success'])
 Route::get('/payment/paypal/cancel', [PaypalController::class, 'cancel'])
     ->name('payment.paypal.cancel');
 
+
 // Payment  with Card
-
-
 Route::get('/admin/payments', [PaymentController::class, 'index'])->name('admin.payments.index');
 
 Route::get('/payments/create', [PaymentController::class, 'create'])->name('payments.create');

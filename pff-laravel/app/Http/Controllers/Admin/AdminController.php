@@ -22,10 +22,7 @@ class AdminController extends Controller
                                     ->limit(6)
                                     ->get();
 
-    return view('admin.admin', [
-        'deliveredDeliveries' => $deliveredDeliveries,
-        'monthlyAmounts' => $monthlyAmounts
-    ]);
+    return view('admin.admin', compact('monthlyAmounts','deliveredDeliveries'));
 }
     
 }

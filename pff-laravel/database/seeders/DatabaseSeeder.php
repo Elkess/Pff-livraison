@@ -39,7 +39,7 @@ class DatabaseSeeder extends Seeder
             'phonenumber' => '+212522009988',
             'email' => 'q@q.q'
         ]);
-        \App\Models\Vehicle::create([
+        Vehicle::create([
             'type' => 'MotorCycle',
             'capacity' => '10',
             'currentlocation' => 'streetAddress',
