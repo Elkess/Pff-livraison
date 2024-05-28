@@ -5,24 +5,24 @@
             @csrf
             @method('PUT')
             <div class="flex flex-col">
-                <label for="pickUpLocation" class="text-lg text-gray-800 font-bold">Pick-Up Location:</label>
-                <input type="text" id="pickUpLocation" name="pickUpLocation" value="{{ $delivery->pickUpLocation }}"
+                <label for="pickuplocation" class="text-lg text-gray-800 font-bold">Pick-Up Location:</label>
+                <input type="text" id="pickuplocation" name="pickuplocation" value="{{ $delivery->pickuplocation }}"
                     class="p-2" required>
             </div>
             <div class="flex flex-col">
-                <label for="pickUpTime" class="text-lg text-gray-800 font-bold">Pick-Up Time:</label>
-                <input type="datetime-local" id="pickUpTime" name="pickUpTime"
-                    value="{{ date('Y-m-d\TH:i', strtotime($delivery->pickUpTime)) }}" class="p-2" required>
+                <label for="pickuptime" class="text-lg text-gray-800 font-bold">Pick-Up Time:</label>
+                <input type="datetime-local" id="pickuptime" name="pickuptime"
+                    value="{{ date('Y-m-d\TH:i', strtotime($delivery->pickuptime)) }}" class="p-2" required>
             </div>
             <div class="flex flex-col">
-                <label for="dropOffLocation" class="text-lg text-gray-800 font-bold">Drop-Off Location:</label>
-                <input type="text" id="dropOffLocation" name="dropOffLocation"
-                    value="{{ $delivery->dropOffLocation }}" class="p-2" required>
+                <label for="dropofflocation" class="text-lg text-gray-800 font-bold">Drop-Off Location:</label>
+                <input type="text" id="dropofflocation" name="dropofflocation"
+                    value="{{ $delivery->dropofflocation }}" class="p-2" required>
             </div>
             <div class="flex flex-col">
-                <label for="dropOffTime" class="text-lg text-gray-800 font-bold">Drop-Off Time:</label>
-                <input type="datetime-local" id="dropOffTime" name="dropOffTime"
-                    value="{{ date('Y-m-d\TH:i', strtotime($delivery->dropOffTime)) }}" class="p-2" required>
+                <label for="dropofftime" class="text-lg text-gray-800 font-bold">Drop-Off Time:</label>
+                <input type="datetime-local" id="dropofftime" name="dropofftime"
+                    value="{{ date('Y-m-d\TH:i', strtotime($delivery->dropofftime)) }}" class="p-2" required>
             </div>
             <div class="flex flex-col">
                 <label for="status" class="text-lg text-gray-800 font-bold">Status:</label>
@@ -54,9 +54,9 @@
                 <select name="client_id" id="client_id" class="p-2">
                     <option value="">Select Client</option>
                     @foreach ($clients as $client)
-                        <option value="{{ $client->id }}"
-                            {{ $client->id == $delivery->client_id ? 'selected' : '' }}>
-                            {{ $client->name }}</option>
+                        <option
+                            value="{{ $client->id }}"{{ $client->user_id == $delivery->client_id ? 'selected' : '' }}>
+                            {{ $client->Lastname }}</option>
                     @endforeach
                 </select>
             </div>
@@ -65,9 +65,11 @@
                 <select name="driver_id" id="driver_id" class="p-2">
                     <option value="">Select Driver</option>
                     @foreach ($drivers as $driver)
-                        <option value="{{ $driver->id }}"
-                            {{ $driver->id == $delivery->driver_id ? 'selected' : '' }}>
-                            {{ $driver->name }}</option>
+                        <option value="{{ old('Lastname',$driver->Lastname) }}"
+                            {{ $driver->user_id == $delivery->driver_id ? 'selected' : '' }}>
+                            {{ $driver->Lastname }}</option>
+
+                        
                     @endforeach
                 </select>
             </div>

@@ -24,13 +24,13 @@ class AuthMiddleware
                     break;
                 case 'driver':
                     return
-                        redirect(route('driver.index'));
-                    return $next($request);
+                        redirect(route('driver.deliveries'));
+                    // return $next($request);
                     break;
                 default:
                 session()->flush();
                     redirect(route('auth.login'))->with('Error', 'Unexpected err ');
-                    return $next($request);
+                    // return $next($request);
                     break;
             }
         }

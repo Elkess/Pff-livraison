@@ -4,9 +4,15 @@
 
         <form method="POST" action="{{ route('admin.users.store') }}">
             @csrf
-            <label for="name" class="block mb-2">Name:</label>
-            <input type="text" id="name" name="name" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 mb-4">
-            @error('name')
+            <label for="Firstname" class="block mb-2">Firstname:</label>
+            <input type="text" id="Firstname" name="Firstname" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 mb-4">
+            @error('Firstname')
+                <div class="text-red-500">{{ $message }}</div>
+            @enderror
+
+            <label for="Lastname" class="block mb-2">Lastname:</label>
+            <input type="text" id="Lastname" name="Lastname" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 mb-4">
+            @error('Lastname')
                 <div class="text-red-500">{{ $message }}</div>
             @enderror
 
@@ -22,17 +28,17 @@
                 <div class="text-red-500">{{ $message }}</div>
             @enderror
 
-            <label for="phoneNumber" class="block mb-2">Phone Number:</label>
-            <input type="text" id="phoneNumber" name="phoneNumber" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 mb-4">
-            @error('phoneNumber')
+            <label for="phonenumber" class="block mb-2">Phone Number:</label>
+            <input type="text" id="phonenumber" name="phonenumber" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 mb-4">
+            @error('phonenumber')
                 <div class="text-red-500">{{ $message }}</div>
             @enderror
 
-            <label for="address" class="block mb-2">Address:</label>
+            {{-- <label for="address" class="block mb-2">Address:</label>
             <input type="text" id="address" name="address" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 mb-4">
             @error('address')
                 <div class="text-red-500">{{ $message }}</div>
-            @enderror
+            @enderror --}}
 
             <label for="role" class="block mb-2">Role:</label>
             <select name="role" id="role" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 mb-4">

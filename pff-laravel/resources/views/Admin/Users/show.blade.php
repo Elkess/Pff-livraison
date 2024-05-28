@@ -4,9 +4,14 @@
 
         <div class="">
             <p class="mb-4  pb-2 text-blue-700">
-                <label for="name" class=" font-bold text-black">Name:</label>
+                <label for="firstname" class=" font-bold text-black">Firstname:</label>
                 
-                {{ $user->name }}</p>
+                {{ $user->Firstname }}</p>
+        </div><div class="">
+            <p class="mb-4  pb-2 text-blue-700">
+                <label for="lastname" class=" font-bold text-black">Lastname:</label>
+                
+                {{ $user->Lastname }}</p>
         </div>
 
         <div class="">
@@ -25,17 +30,17 @@
 
         <div class="">
             <p class="mb-4  pb-2 text-blue-700">
-                <label for="phoneNumber" class=" font-bold text-black">Phone Number:</label>
+                <label for="phonenumber" class=" font-bold text-black">Phone Number:</label>
                 
-                {{ $user->phoneNumber }}</p>
+                {{ $user->phonenumber }}</p>
         </div>
 
-        <div class="">
+        {{-- <div class="">
             <p class="mb-4  pb-2 text-blue-700">
                 <label for="adress" class=" font-bold text-black">Address:</label>
                 
                 {{ $user->adress }}</p>
-        </div>
+        </div> --}}
 
         <div class="">
             <p class="mb-4  pb-2 text-blue-700">

@@ -11,11 +11,20 @@
             @method('PUT')
 
             <br>
-            <label for="name" class="text-xl">Name:</label>
+            <label for="firstname" class="text-xl">Firstname:</label>
 
-            <input type="text" id="name" name="name" value="{{ old('name', $user->name) }}"
+            <input type="text" id="Firstname" name="Firstname" value="{{ old('Firstname', $user->Firstname) }}"
                 class="border rounded-md p-1 hover:text-blue-600">
-            @error('name')
+            @error('Firstname')
+                <div class="error-message">{{ $message }}</div>
+            @enderror
+
+            <br>
+            <label for="Lastname" class="text-xl">Lastname:</label>
+
+            <input type="text" id="Lastname" name="Lastname" value="{{ old('Lastname', $user->Lastname) }}"
+                class="border rounded-md p-1 hover:text-blue-600">
+            @error('Lastname')
                 <div class="error-message">{{ $message }}</div>
             @enderror
 
@@ -31,23 +40,23 @@
             <br>
             <label for="password" class="text-xl">Password:</label>
 
-            <input type="password" id="password" name="password" value="{{ old('password') }}"
+            <input type="text" id="password" name="password" value="{{ old('password', $user->password) }}"
                 class="border rounded-md p-1 hover:text-blue-600">
             @error('password')
                 <div class="error-message">{{ $message }}</div>
             @enderror
 
             <br>
-            <label for="phoneNumber" class="text-xl">Phone Number:</label>
+            <label for="phonenumber" class="text-xl">Phone Number:</label>
 
-            <input type="text" id="phoneNumber" name="phoneNumber"
-                value="{{ old('phoneNumber', $user->phoneNumber) }}" class="border rounded-md p-1 hover:text-blue-600">
-            @error('phoneNumber')
+            <input type="text" id="phonenumber" name="phonenumber"
+                value="{{ old('phonenumber', $user->phonenumber) }}" class="border rounded-md p-1 hover:text-blue-600">
+            @error('phonenumber')
                 <div class="error-message">{{ $message }}</div>
             @enderror
 
             <br>
-            <label for="adress" class="text-xl">Address:</label>
+            {{-- <label for="adress" class="text-xl">Address:</label>
 
             <input type="text" id="adress" name="adress" value="{{ old('adress', $user->adress) }}"
                 class="border rounded-md p-1 hover:text-blue-600">
@@ -55,7 +64,7 @@
                 <div class="error-message">{{ $message }}</div>
             @enderror
 
-            <br>
+            <br> --}}
             <label for="role" class="text-xl">Role:</label>
             <select name="role" id="role" class="border rounded-md p-1 hover:text-blue-600">
                 <option value="Admin" {{ old('role', $user->role) == 'Admin' ? 'selected' : '' }}>Admin</option>

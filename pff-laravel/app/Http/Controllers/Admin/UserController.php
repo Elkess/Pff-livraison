@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use PhpParser\Node\Stmt\TryCatch;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -43,22 +44,22 @@ public function store(Request $request)
     {
         // Validate the request data
         $validatedData = $request->validate([
-            'name' => 'required|string|max:255',
+            'Firstname' => 'required|string|max:255',
+            'Lastname' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8',
-            'phoneNumber' => 'required|string|max:20',
-            'adress' => 'required|string|max:255',
+            'phonenumber' => 'required|string|max:20',
             'role' => 'required|string|in:Admin,Driver,Client',
         ]);
         
-
+// dd($validatedData);
         // Create the user
-        $user = User::create([
-            'name' => $validatedData['name'],
+        $user =User::create([
+            'Firstname' => $validatedData['Firstname'],
+            'Lastname' => $validatedData['Lastname'],
             'email' => $validatedData['email'],
-            'password' => $validatedData['password'],
-            'phoneNumber' => $validatedData['phoneNumber'],
-            'adress' => $validatedData['adress'],
+            'password' => Hash::make($validatedData['password']),
+            'phonenumber' => $validatedData['phonenumber'],
             'role' => $validatedData['role'],
         ]);
 
@@ -100,12 +101,12 @@ public function store(Request $request)
         // Validate the request data
     try {
             $validatedData = $request->validate([
-            'name' => 'required|string|max:255',
+            'Firstname' => 'required|string|max:255',
+            'Lastname' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|
             ',
             'password' => 'required|string|min:8',
-            'phoneNumber' => 'required|string|max:20',
-            'adress' => 'required|string|max:255',
+            'phonenumber' => 'required|string|max:20',
             'role' => 'required|string|in:Admin,Driver,Client',
         ]);
 
@@ -114,11 +115,11 @@ public function store(Request $request)
     }
         // Create the user
         $user->update([
-            'name' => $validatedData['name'],
+            'Firstname' => $validatedData['Firstname'],
+            'Lastname' => $validatedData['Lastname'],
             'email' => $validatedData['email'],
-            'password' => $validatedData['password'],
-            'phoneNumber' => $validatedData['phoneNumber'],
-            'adress' => $validatedData['adress'],
+            'password' => Hash::make($validatedData['password']),
+            'phonenumber' => $validatedData['phonenumber'],
             'role' => $validatedData['role'],
         ]);
 

@@ -28,13 +28,14 @@ class DeliveryController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'pickUpLocation' => 'required|string',
-            'pickUpTime' => 'required|date',
-            'dropOffLocation' => 'required|string',
-            'dropOffTime' => 'required|date',
+            'pickuplocation' => 'required|string',
+            'pickuptime' => 'required|date',
+            'dropofflocation' => 'required|string',
+            'dropofftime' => 'required|date',
             'status' => 'required|in:Pending,In Transit,Delivered,Out for Delivery,Attempted Delivery,Returned to Sender,Delayed,On Hold,Failed,Canceled',
-            'client_id' => 'nullable|exists:users,id',
-            'driver_id' => 'nullable|exists:users,id',
+            'client_id' => 'nullable|exists:users,user_id',
+            'driver_id' => 'nullable|exists:users,user_id',
+            'vehicle_id' => 'nullable',
         ]);
 
         Delivery::create($request->all());
@@ -63,13 +64,14 @@ class DeliveryController extends Controller
     public function update(Request $request, Delivery $delivery)
     {
         $request->validate([
-            'pickUpLocation' => 'required|string',
-            'pickUpTime' => 'required|date',
-            'dropOffLocation' => 'required|string',
-            'dropOffTime' => 'required|date',
+            'pickuplocation' => 'required|string',
+            'pickuptime' => 'required|date',
+            'dropofflocation' => 'required|string',
+            'dropofftime' => 'required|date',
             'status' => 'required|in:Pending,In Transit,Delivered,Out for Delivery,Attempted Delivery,Returned to Sender,Delayed,On Hold,Failed,Canceled',
-            'client_id' => 'nullable|exists:users,id',
-            'driver_id' => 'nullable|exists:users,id',
+            'client_id' => 'nullable|exists:users,user_id',
+            'driver_id' => 'nullable|exists:users,user_id',
+            'vehicle_id' => 'nullable',
         ]);
 
         $delivery->update($request->all());
