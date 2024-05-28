@@ -85,7 +85,7 @@ class DatabaseSeeder extends Seeder
                 'pickUpTime' => now()->addDay(),
                 'dropOffLocation' => 'Dropoff Address',
                 'dropOffTime' => now()->addDays(2),
-                'client_id' => $client->id,
+                'client_id' => 3,
             ]);
         }
 
@@ -95,7 +95,7 @@ class DatabaseSeeder extends Seeder
                 'PaymentDate' => now(),
                 'amount' => 874.11,
                 'status' => 'Pending',
-                'client_id' => $client->id,
+                'client_id' => 3,
             ]);
         }
 

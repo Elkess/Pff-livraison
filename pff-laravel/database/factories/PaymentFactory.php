@@ -23,7 +23,7 @@ class PaymentFactory extends Factory
             'card_number'  => $this->faker->numberBetween(1000000000000000, 9999999999999999),
             'expiry_date' => $this->faker->numberBetween(10,99),
             'cvv' => $this->faker->numberBetween(100, 999),
-            'client_id' => fake(), 
+            'client_id' => 3, 
         ];
     }
 }

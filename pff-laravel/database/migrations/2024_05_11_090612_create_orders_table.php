@@ -16,7 +16,7 @@ class CreateOrdersTable extends Migration
             $table->dateTime('dropOffTime');
             $table->enum('status', ['Pending', 'Paid', 'Canceled'])->default('Pending');
             $table->unsignedBigInteger('client_id');
-            $table->foreign('client_id')->references('id')->on('users');
+            $table->foreign('client_id')->references('user_id')->on('users');
             $table->timestamps();
         });
     }

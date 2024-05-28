@@ -37,29 +37,7 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-//     public function store(Request $request)
-//     {
-//         $request->validate([
-//             'name'=>['required','string'],
-//             'email'=>['required','string'],
-//             'password'=>['required','string'],
-//             'phoneNumber'=>['required','string'],
-//             'adress'=>['required','string'],
-//             'role'=>['required','string'],
-//         ]);
 
-//         User::create([
-//             'name'=>$request->name,
-//             'email'=>$request->email,
-//             'password'=>$request->password,
-//             'phoneNumber'=>$request->phoneNumber,
-//             'adress'=>$request->adress,
-//             'role'=>$request->role,
-//         ]);
-
-//         return to_route('admin.users.index')->with('message','User was created');
-// // 
-//     }
 
 public function store(Request $request)
     {

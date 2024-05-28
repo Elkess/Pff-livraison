@@ -22,7 +22,7 @@ class OrderFactory extends Factory
             'client_id' => function () {
                 // Get a random user with the role 'client'
                 $client = User::whereHas('roles', function ($query) {
-                    $query->where('name', 'client');
+                    $query->where('role', 'client');
                 })->inRandomOrder()->first();
                 return $client->id ?? User::factory()->create(['role' => 'client'])->id;
             },

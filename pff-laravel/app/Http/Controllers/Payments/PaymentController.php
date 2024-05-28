@@ -32,9 +32,11 @@ class PaymentController extends Controller
     }
 
     public function processPayment(Request $request
-    , Order $order
     )
     {
+        $order = Order::find(1
+            // $request->order_id
+        );
         // Validate payment data
         $request->validate([
             'amount' => 'required|numeric|min:0',

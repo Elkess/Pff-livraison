@@ -6,7 +6,7 @@
             <div class="error-message">{{ $error }}</div>
         @endforeach
 
-        <form method="POST" action="{{ route('admin.users.update', $user->id) }}" class="space-y-4">
+        <form method="POST" action="{{ route('admin.users.update', $user->user_id) }}" class="space-y-4">
             @csrf
             @method('PUT')
 

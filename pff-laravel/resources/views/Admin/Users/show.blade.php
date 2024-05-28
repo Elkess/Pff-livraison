@@ -44,6 +44,6 @@
                 {{ $user->role }}</p>
         </div>
 
-        <a href="{{ route('admin.users.edit', $user->id) }}" class="btn bg-blue-600 text-white px-4 py-2 rounded inline-block">Edit User</a>
+        <a href="{{ route('admin.users.edit', $user->user_id) }}" class="btn bg-blue-600 text-white px-4 py-2 rounded inline-block">Edit User</a>
     </div>
 </x-layout>

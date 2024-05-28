@@ -26,8 +26,8 @@ class DeliveryFactory extends Factory
             'weight' => $this->faker->numberBetween(10, 120),
             'status' => $this->faker->randomElement(['Ready', 'in_transit', 'Other']),
             'client_id' => $this->faker->randomElement(User::all()),
-            'vehicle_id' => null,
-            'driver_id' => 1,
+            'vehicle_id' => 1,
+            'driver_id' => 2,
         ];
     }
 }

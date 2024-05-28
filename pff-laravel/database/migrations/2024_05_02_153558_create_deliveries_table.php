@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('deliveries', function (Blueprint $table) {
             $table->id('delivery_id');
-            $table->enum('status', ['Pending', 'In Transit', 'Delivered', 'Out for Delivery', 'Attempted Delivery', 'Returned to Sender', 'Delayed', 'On Hold', 'Failed', 'Canceled']);
+            $table->enum('status', ['Ready', 'in_transit', 'Other']);
             $table->string('pickuplocation');
             $table->dateTime('pickuptime')->nullable();
             $table->string('dropofflocation');
