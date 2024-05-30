@@ -21,7 +21,7 @@ Route::redirect('/', '/authenticate');
 Route::fallback(FallbackController::class);
 
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
-Route::get('/authenticate', [AuthController::class, 'loginPage'])->name('auth.login');#->middleware('login');
+Route::get('/authenticate', [AuthController::class, 'loginPage'])->name('auth.login'); #->middleware('login');
 Route::get('/signup', [AuthController::class, 'signupPage'])->name('auth.signup');
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/signup', [AuthController::class, 'signup']);
@@ -30,7 +30,7 @@ Route::post('/signup', [AuthController::class, 'signup']);
 Route::middleware([DriverMiddleware::class])->group(function () {
     Route::prefix('Driver')->group(function () {
         Route::get('Vehicles', [DriverController::class, 'vehicles'])->name('driver.vehicles');
-        Route::get('Deliveries', [DriverController::class, 'orders'])->name('driver.orders');
+        Route::get('orders', [DriverController::class, 'orders'])->name('driver.orders');
         Route::get('deliveries', [DriverController::class, 'deliveries'])->name('driver.deliveries');
         Route::get('Reports', [DriverController::class, 'reports'])->name('driver.reports');
         Route::post('report/{id}', [DriverController::class, 'reportVehicle'])->name('report');
@@ -43,10 +43,6 @@ Route::middleware([DriverMiddleware::class])->group(function () {
 Route::middleware([AdminMiddleware::class])->group(function () {
 
     Route::get('/admin', [AdminController::class, 'Reporting'])->name('admin');
-
-
-    // user 
-
     Route::get('/admin/users', [UserController::class, 'index'])
         ->name('admin.users.index');
     Route::get('/admin/users/create', [UserController::class, 'create'])

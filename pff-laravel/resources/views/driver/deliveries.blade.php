@@ -17,102 +17,108 @@
                         </div>
 
                         <div class="card-body text-wrap text-center ">
+                            @if ($delivery->status != 'Picked Up')
+                                <h6 class="card-text ">Pickup Location:
+                                    <span class="badge bg-body-secondary fs-6 text-black text-wrap">
+                                        {{ $delivery->pickuplocation }}
+                                    </span>
+                                </h6>
+                            @else
                             <h6 class="card-text ">Pickup Location:
-                                <span class="badge bg-body-secondary  fs-6 text-black text-wrap">
-                                    {{ $delivery->pickuplocation }}
-                                </span>
-                            </h6>
-
-                            <h6 class="card-text">Destination:
-                                <span class="badge bg-body-secondary fs-6 text-black  text-wrap">
-                                    {{ $delivery->dropofflocation }}
-                                </span>
-                            </h6>
-                            <h6 class="card-text">Phone Number:
-                                <span class="badge bg-body-secondary fs-6 text-black  text-wrap">
-                                    {{ $delivery->client->phonenumber }}
-                                </span>
-                            </h6>
-
-                            @if ($delivery->pickuptime != null)
-                                <h6 class="card-text">Pickup Time: {{ $delivery->pickuptime }}</h6>
+                                    <span class="badge bg-success opacity-75 fs-6 text-black text-wrap">
+                                        {{ $delivery->pickuplocation }}
+                                    </span>
+                                </h6>
                             @endif
+
+                <h6 class="card-text">Destination:
+                    <span class="badge bg-primary fs-6   text-wrap">
+                        {{ $delivery->dropofflocation }}
+                    </span>
+                </h6>
+                <h6 class="card-text">Phone Number:
+                    <span class="badge bg-info fs-6 text-black  text-wrap">
+                        {{ $delivery->client->phonenumber }}
+                    </span>
+                </h6>
+
+                @if ($delivery->pickuptime != null)
+                    <h6 class="badge bg-primary">Pickup Time: {{ $delivery->pickuptime }}</h6>
+                @endif
+            </div>
+            <div class="card-footer">
+                <div class="d-flex justify-content-evenly flex-wrap ">
+                    @switch($delivery->status)
+                        @case('Picked Up')
+                            <form class="mb-2" method="POST" action={{ route('dropoff', $delivery->delivery_id) }}>
+                                @csrf
+                                @method('PATCH')
+                                <button class="btn btn-success "type="submit">Drop off</button>
+                            </form>
+                        @break
+
+                        @case('in_transit')
+                            <form class="mb-2" method="POST" action={{ route('pickup', $delivery->delivery_id) }}>
+                                @csrf
+                                @method('PATCH')
+                                <button class="btn btn-primary" type="submit">Pick Up</button>
+                            </form>
+                        @break
+
+                        @default
+                    @endswitch
+
+                    @if ($delivery->pickuptime != null)
+                        <div class="mb-2">
+                            <button class="btn btn-danger" data-bs-toggle="modal"
+                                data-bs-target="#exampleModal">Cancel</button>
                         </div>
-                        <div class="card-footer">
-                            <div class="d-flex justify-content-evenly flex-wrap ">
-                                @switch($delivery->status)
-                                    @case('Picked Up')
-                                        <form class="mb-2" method="POST" action={{ route('dropoff', $delivery->delivery_id) }}>
-                                            @csrf
-                                            @method('PATCH')
-                                            <button class="btn btn-success "type="submit">Drop off</button>
-                                        </form>
-                                    @break
-
-                                    @case('in_transit')
-                                        <form class="mb-2" method="POST" action={{ route('pickup', $delivery->delivery_id) }}>
-                                            @csrf
-                                            @method('PATCH')
-                                            <button class="btn btn-primary" type="submit">Pick Up</button>
-                                        </form>
-                                    @break
-
-                                    @default
-                                @endswitch
-
-                                @if ($delivery->pickuptime != null)
-                                    <div class="mb-2">
-                                        <button class="btn btn-danger" data-bs-toggle="modal"
-                                            data-bs-target="#exampleModal">Cancel</button>
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5">Cancel Delivery</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
                                     </div>
-                                    <div class="modal fade" id="exampleModal" tabindex="-1"
-                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h1 class="modal-title fs-5">Cancel Delivery</h1>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                        aria-label="Close"></button>
-                                                </div>
-                                                <form class="mb-2" method="POST"
-                                                    action={{ route('cancel', $delivery->delivery_id) }}>
-                                                    <div class="modal-body">
-                                                        @csrf
-                                                        @method('PATCH')
-                                                        <input type="text" value='1' name="vehicle" hidden />
-                                                        <div class="mt-3">
-                                                            <label class=" form-label ">Package Location</label>
-                                                            <input class="form-control" name="newpickup"
-                                                                placeholder="New location" />
-                                                        </div>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button class="btn btn-danger "type="submit">Submit</button>
-                                                        <button type="button" class="btn btn-secondary"
-                                                            data-bs-dismiss="modal">Close</button>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                @else
                                     <form class="mb-2" method="POST"
                                         action={{ route('cancel', $delivery->delivery_id) }}>
-                                        @csrf
-                                        @method('PATCH')
-                                        <button class="btn btn-warning" type="submit">Cancel</button>
+                                        <div class="modal-body">
+                                            @csrf
+                                            @method('PATCH')
+                                            <input type="text" value='1' name="vehicle" hidden />
+                                            <div class="mt-3">
+                                                <label class=" form-label ">Package Location</label>
+                                                <input class="form-control" name="newpickup" placeholder="New location" />
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button class="btn btn-danger "type="submit">Submit</button>
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Close</button>
+                                        </div>
                                     </form>
-                                @endif
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    @empty
-                        <div class=" text-center ">
-                            <p class="card-text">NO Delivery Available</p>
-                        </div>
-                    @endforelse
+                    @else
+                        <form class="mb-2" method="POST" action={{ route('cancel', $delivery->delivery_id) }}>
+                            @csrf
+                            @method('PATCH')
+                            <button class="btn btn-warning" type="submit">Cancel</button>
+                        </form>
+                    @endif
                 </div>
             </div>
+        </div>
+        @empty
+            <div class=" text-center ">
+                <p class="card-text">NO Delivery Available</p>
+            </div>
+            @endforelse
+        </div>
+        </div>
         </div>
         <div class="card m-5">
             <x-accordion :pendings="$Pendings" />

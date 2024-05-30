@@ -20,9 +20,9 @@ class DeliveryFactory extends Factory
     {
         return [
             'pickuplocation' => $this->faker->address(),
-            'pickuptime' => fake()->dateTime(),
+            'pickuptime' => null,
             'dropofflocation' => $this->faker->address(),
-            'dropofftime' => fake()->dateTime(),
+            'dropofftime' => null,
             'weight' => $this->faker->numberBetween(10, 120),
             'status' => $this->faker->randomElement(['Ready', 'in_transit', 'Other']),
             'client_id' => $this->faker->randomElement(User::all()),
