@@ -4,9 +4,8 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class DriverMiddleware
+class ClientMiddleware
 {
     /**
      * Handle an incoming request.
@@ -17,13 +16,13 @@ class DriverMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-
-        if (Auth::check() && Auth::user()->role== 'driver') {
+        if (auth()->check()&& auth()->user()->role==='client') {
             return $next($request);
-        } else {
+        }else{
+
             session()->flush();
             auth()->logout();
             return redirect(route('auth.login'))->with('Error', 'You are not Allowed');
         }
-    }
+        }
 }

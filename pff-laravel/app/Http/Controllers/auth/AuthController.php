@@ -35,7 +35,12 @@ class AuthController extends Controller
                 return redirect(route('client.index'));
             }
         } else {
-            return redirect(route('auth.login'))->withErrors(['password'=>'Incorrect Password', 'email' => 'Incorrect Email']);
+            $user = User::where('email', $request->email)->first();
+            if ($user) {
+                return redirect(route('auth.login'))->withErrors(['password' => 'Incorrect Password']);
+            } else {
+                return redirect(route('auth.login'))->withErrors(['email' => 'Email not registered']);
+            }
         }
     }
     public function signup(Request $request)

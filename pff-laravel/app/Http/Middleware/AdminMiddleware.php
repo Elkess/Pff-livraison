@@ -4,9 +4,8 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class DriverMiddleware
+class AdminMiddleware
 {
     /**
      * Handle an incoming request.
@@ -17,9 +16,8 @@ class DriverMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-
-        if (Auth::check() && Auth::user()->role== 'driver') {
-            return $next($request);
+        if (auth()->check() && auth()->user()->role === 'admin') {
+            return  $next($request);
         } else {
             session()->flush();
             auth()->logout();

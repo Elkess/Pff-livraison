@@ -8,31 +8,24 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthMiddleware
 {
-    /**
-     * Handle an incoming request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
-     * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
-     */
+
     public function handle(Request $request, Closure $next)
     {
         if (Auth::check()) {
             switch (Auth::user()->role) {
                 case 'admin':
-                    return redirect(route('admin'));
-                    break;
+                    return redirect()->route('admin');
                 case 'driver':
-                    return
-                        redirect(route('driver.deliveries'));
-                    // return $next($request);
-                    break;
+                    return redirect()->route('driver.deliveries');
                 default:
-                session()->flush();
-                    redirect(route('auth.login'))->with('Error', 'Unexpected err ');
-                    // return $next($request);
-                    break;
+                    Auth::logout();
+                    return redirect()->route('auth.login')->with('Error', 'Unexpected error');
             }
+        }else{
+            session()->flush();
+            auth()->logout();
+            return redirect(route('auth.login'))->with('Error', 'You are not Allowed');
         }
+
     }
 }

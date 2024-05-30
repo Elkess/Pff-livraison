@@ -17,7 +17,6 @@ class DriverController extends Controller
         $Pendings = Delivery::where('driver_id', $driver->user_id)->where('status', 'Pending')->get();
 
         $Delivered = Delivery::where('driver_id', $driver->user_id)->where('status', 'Delivered')->get();
-        // dd($Pendings);
         return view('driver.deliveries', compact('Deliveries', 'Delivered', 'Pendings'));
     }
     public function orders()
@@ -76,6 +75,7 @@ class DriverController extends Controller
     public function pickupDelivery($id)
     {
         $delivery = Delivery::find($id);
+        // dd($delivery);
         $delivery->update([
             'status' => 'Picked Up',
             'pickuptime' => Carbon::now()
