@@ -30,5 +30,8 @@ class Delivery extends Model
     public function client()
     {
         return $this->belongsTo(User::class, 'client_id');
+    }public function vehicle()
+    {
+        return $this->belongsTo(Vehicle::class, 'vehicle_id');
     }
 }

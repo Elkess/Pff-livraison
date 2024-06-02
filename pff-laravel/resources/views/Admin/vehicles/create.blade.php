@@ -34,9 +34,9 @@
             </div>
 
             <div>
-                <label for="currentLocation" class="block text-sm font-medium text-black">Current Location:</label>
-                <input type="text" id="currentLocation" name="currentLocation" required class="mt-1 block w-full px-3 py-2 border border-blue-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
-                @error('currentLocation')
+                <label for="currentlocation" class="block text-sm font-medium text-black">Current Location:</label>
+                <input type="text" id="currentlocation" name="currentlocation" required class="mt-1 block w-full px-3 py-2 border border-blue-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                @error('currentlocation')
                     <div class="text-red-500 text-xs mt-1">{{ $message }}</div>
                 @enderror
             </div>
@@ -50,6 +50,8 @@
             </div>
 
             <button type="submit" class="px-4 py-2 bg-blue-500 text-white font-bold rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300">Create</button>
+            <a href="{{ route('admin.vehicles.index') }}"
+                class=" hover:bg-slate-300 bg-blue-200 text-black py-2 font-semibold px-2 rounded "> Go back</a>
         </form>
     </div>
 </x-layout>

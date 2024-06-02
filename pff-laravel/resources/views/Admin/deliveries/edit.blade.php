@@ -27,26 +27,12 @@
             <div class="flex flex-col">
                 <label for="status" class="text-lg text-gray-800 font-bold">Status:</label>
                 <select name="status" id="status" class="p-2" required>
-                    <option value="Pending" {{ $delivery->status == 'Pending' ? 'selected' : '' }}>Pending</option>
-                    <option value="In Transit" {{ $delivery->status == 'In Transit' ? 'selected' : '' }}>In Transit
+                    <option value="Ready" {{ $delivery->status == 'Ready' ? 'selected' : '' }}>Ready</option>
+                    <option value="in_transit" {{ $delivery->status == 'in_transit' ? 'selected' : '' }}>In transit
                     </option>
-                    <option value="Delivered" {{ $delivery->status == 'Delivered' ? 'selected' : '' }}>Delivered
+                    <option value="Other" {{ $delivery->status == 'Other' ? 'selected' : '' }}>Other
                     </option>
-                    <option value="Out for Delivery" {{ $delivery->status == 'Out for Delivery' ? 'selected' : '' }}>Out
-                        for Delivery
-                    </option>
-                    <option value="Attempted Delivery"
-                        {{ $delivery->status == 'Attempted Delivery' ? 'selected' : '' }}>Attempted Delivery
-                    </option>
-                    <option value="Returned to Sender"
-                        {{ $delivery->status == 'Returned to Sender' ? 'selected' : '' }}>Returned to Sender
-                    </option>
-                    <option value="Delayed" {{ $delivery->status == 'Delayed' ? 'selected' : '' }}>Delayed
-                    </option>
-                    <option value="On Hold" {{ $delivery->status == 'On Hold' ? 'selected' : '' }}>On Hold
-                    </option>
-                    <option value="Canceled" {{ $delivery->status == 'Canceled' ? 'selected' : '' }}>Canceled
-                    </option>
+
                 </select>
             </div>
             <div class="flex flex-col">
@@ -54,8 +40,8 @@
                 <select name="client_id" id="client_id" class="p-2">
                     <option value="">Select Client</option>
                     @foreach ($clients as $client)
-                        <option
-                            value="{{ $client->id }}"{{ $client->user_id == $delivery->client_id ? 'selected' : '' }}>
+                        <option value="{{ old('client_id', $delivery->client_id) }}"
+                            {{ $client->user_id == $delivery->client_id ? 'selected' : '' }}>
                             {{ $client->Lastname }}</option>
                     @endforeach
                 </select>
@@ -65,16 +51,28 @@
                 <select name="driver_id" id="driver_id" class="p-2">
                     <option value="">Select Driver</option>
                     @foreach ($drivers as $driver)
-                        <option value="{{ old('Lastname',$driver->Lastname) }}"
+                        <option value="{{ $driver->user_id }}"
                             {{ $driver->user_id == $delivery->driver_id ? 'selected' : '' }}>
                             {{ $driver->Lastname }}</option>
-
-                        
+                    @endforeach
+                </select>
+            </div>
+            <div class="flex flex-col">
+                <label for="driver_id" class="text-lg text-gray-800 font-bold">Vehicle :</label>
+                <select name="vehicle_id" id="vehicle_id" class="p-2">
+                    <option value="">Select Vehicle</option>
+                    @foreach ($vehicles as $vehicle)
+                        <option value="{{ $vehicle->vehicle_id }}"
+                            {{ $vehicle->vehicle_id == $delivery->vehicle_id ? 'selected' : '' }}>
+                            {{ $vehicle->type }}</option>
                     @endforeach
                 </select>
             </div>
             <button type="submit"
                 class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">Update</button>
+                {{-- {{dd($delivery)}} --}}
+                <a href="{{ route('admin.deliveries.index') }}"
+                class=" hover:bg-slate-300 bg-blue-200 text-black py-2 font-semibold px-2 rounded "> Go back</a>
         </form>
     </div>
 </x-layout>

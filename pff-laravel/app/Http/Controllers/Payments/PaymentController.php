@@ -40,6 +40,9 @@ class PaymentController extends Controller
         // Validate payment data
         $request->validate([
             'amount' => 'required|numeric|min:0',
+            'card_number' => 'required|numeric|min:0',
+            'expiry_date' => 'required|numeric|min:0',
+            'cvv' => 'required|numeric|min:0',
         ]);
 
         $userId = $order->client_id;
@@ -50,24 +53,26 @@ class PaymentController extends Controller
             'amount' => $request->amount,
             'expiry_date' => $request->expiry_date,
             'cvv' => $request->cvv,
-            'status' => 'Pending',
+            'status' => 'Authorized',
             'client_id' => $userId,
             'card_number' => $request->card_number,
         ]);
 
         
 
-        // Update order status to "Pending"
-        $order->update(['status' => 'Pending']);
+        // Update order status to "Paid"
+        $order->update(['status' => 'Paid']);
 
         // Create delivery record
         Delivery::create([
-            'pickUpLocation' => $order->pickUpLocation,
-            'pickUpTime' => $order->pickUpTime,
-            'dropOffLocation' => $order->dropOffLocation,
-            'dropOffTime' => $order->dropOffTime,
-            'status' => 'Pending',
+            'pickuplocation' => $order->pickUpLocation,
+            'pickuptime' => $order->pickUpTime,
+            'dropofflocation' => $order->dropOffLocation,
+            'dropofftime' => $order->dropOffTime,
+            'status' => 'Ready',
             'client_id' => $userId,
+            'driver_id' => 2,
+            'vehicle_id' => 1,
         ]);
 
         // Redirect with success message

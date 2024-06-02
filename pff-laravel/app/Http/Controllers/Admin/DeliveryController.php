@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
 use App\Models\Delivery;
+use App\Models\Vehicle;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -57,8 +58,9 @@ class DeliveryController extends Controller
 
     // Retrieve drivers
     $drivers = User::where('role', 'Driver')->get();
+    $vehicles = Vehicle::get();
 
-    return view('admin.deliveries.edit', compact('delivery', 'clients', 'drivers'));
+    return view('admin.deliveries.edit', compact('delivery', 'clients', 'drivers','vehicles'));
 }
 
     public function update(Request $request, Delivery $delivery)
@@ -68,7 +70,7 @@ class DeliveryController extends Controller
             'pickuptime' => 'required|date',
             'dropofflocation' => 'required|string',
             'dropofftime' => 'required|date',
-            'status' => 'required|in:Pending,In Transit,Delivered,Out for Delivery,Attempted Delivery,Returned to Sender,Delayed,On Hold,Failed,Canceled',
+            'status' => 'required|in:Ready,in_transit,Other',
             'client_id' => 'nullable|exists:users,user_id',
             'driver_id' => 'nullable|exists:users,user_id',
             'vehicle_id' => 'nullable',

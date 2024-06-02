@@ -4,7 +4,7 @@
 
         <table class="table-auto w-full">
             <thead>
-                <tr class="bg-gray-200">
+                <tr class="bg-blue-600 text-white ">
                     <th class="px-4 py-2">ID</th>
                     <th class="px-4 py-2">Pick-Up Location</th>
                     <th class="px-4 py-2">Pick-Up Time</th>

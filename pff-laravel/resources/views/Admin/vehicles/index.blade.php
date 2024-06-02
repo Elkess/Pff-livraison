@@ -22,21 +22,23 @@
                         <td class="border px-4 py-2">{{ $vehicle->type }}</td>
                         <td class="border px-4 py-2">{{ $vehicle->capacity }}</td>
                         <td class="border px-4 py-2">{{ $vehicle->status }}</td>
-                        <td class="border px-4 py-2">{{ $vehicle->currentLocation }}</td>
+                        <td class="border px-4 py-2">{{ $vehicle->currentlocation }}</td>
                         <td class="border px-4 py-2">{{ $vehicle->driver_id }}</td>
                         <td class="border px-4 py-2">
                             <a href="{{ route('admin.vehicles.show', $vehicle->vehicle_id) }}"
                                 class="btn-view bg-blue-500 text-white px-2 py-1 rounded-md">View</a>
                             <a href="{{ route('admin.vehicles.edit', $vehicle->vehicle_id) }}"
-                                class="btn-edit bg-blue-500 text-white px-2 py-1 rounded-md">Edit</a>
-                            <form action="{{ route('admin.vehicles.destroy', $vehicle->vehicle_id) }}" method="POST"
-                                style="display: inline;">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit"
-                                    class="btn-delete bg-red-500 text-white px-2 py-1 rounded-md"
-                                    onclick="return confirm('Are you sure you want to delete this vehicle?')">Delete</button>
-                            </form>
+                                class="btn-edit bg-green-500 text-white px-2 py-1 rounded-md">Edit</a>
+                            @if ($vehiclesNotInDelivery->contains('vehicle_id', $vehicle->vehicle_id))
+                                <form action="{{ route('admin.vehicles.destroy', $vehicle->vehicle_id) }}"
+                                    method="POST" style="display: inline;">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit"
+                                        class="btn-delete bg-red-500 text-white px-2 py-1 rounded-md"
+                                        onclick="return confirm('Are you sure you want to delete this vehicle?')">Delete</button>
+                                </form>
+                            @endif
                         </td>
                     </tr>
                 @endforeach

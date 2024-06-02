@@ -50,5 +50,7 @@
         </div>
 
         <a href="{{ route('admin.users.edit', $user->user_id) }}" class="btn bg-blue-600 text-white px-4 py-2 rounded inline-block">Edit User</a>
+        <a href="{{ route('admin.users.index') }}"
+                class=" hover:bg-slate-300 bg-blue-200 text-black py-2 font-semibold px-2 rounded "> Go back</a>
     </div>
 </x-layout>

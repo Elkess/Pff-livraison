@@ -16,8 +16,14 @@ class VehicleController extends Controller
      */
     public function index()
     {
+        
         $vehicles = Vehicle::all();
-        return view('admin.vehicles.index', compact('vehicles'));
+        $vehiclesNotInDelivery = Vehicle::whereNotIn('vehicle_id', function($query) {
+            $query->select('vehicle_id')
+            ->from('deliveries');
+        })->get();
+        
+        return view('admin.vehicles.index', compact('vehicles','vehiclesNotInDelivery'));
     }
 
     /**
@@ -42,8 +48,8 @@ class VehicleController extends Controller
             'type' => 'required|string',
             'capacity' => 'required|numeric',
             'status' => 'required|in:in transit,available,not working,in maintenance',
-            'currentLocation' => 'required|string',
-            'driver_id' => 'required|exists:users,id,role,driver',
+            'currentlocation' => 'required|string',
+            'driver_id' => 'required|exists:users,user_id,role,driver',
         ]);
 
         Vehicle::create($validatedData);
@@ -89,8 +95,8 @@ class VehicleController extends Controller
             'type' => 'required|string',
             'capacity' => 'required|numeric',
             'status' => 'required|in:in transit,available,not working,in maintenance',
-            'currentLocation' => 'required|string',
-            'driver_id' => 'required|exists:users,id,role,driver',
+            'currentlocation' => 'required|string',
+            'driver_id' => 'required|exists:users,user_id,role,driver',
 
         ]);
 

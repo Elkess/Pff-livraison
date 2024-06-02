@@ -40,10 +40,10 @@
             </div>
 
             <div class="form-group">
-                <label for="currentLocation" class="text-blue-700">Current Location:</label>
-                <input type="text" id="currentLocation" name="currentLocation"
-                    value="{{ $vehicle->currentLocation }}" class="border border-blue-500 rounded-md px-3 py-2 w-full">
-                @error('currentLocation')
+                <label for="currentlocation" class="text-blue-700">Current Location:</label>
+                <input type="text" id="currentlocation" name="currentlocation"
+                    value="{{ $vehicle->currentlocation }}" class="border border-blue-500 rounded-md px-3 py-2 w-full">
+                @error('currentlocation')
                     <div class="error-message text-red-500">{{ $message }}</div>
                 @enderror
             </div>
@@ -52,9 +52,9 @@
                 <label for="driver_id" class="text-blue-700">Driver:</label>
                 <select id="driver_id" name="driver_id" class="border border-blue-500 rounded-md px-3 py-2 w-full">
                     @foreach ($drivers as $driver)
-                        <option value="{{ $driver->id }}"
-                            {{ $vehicle->driver_id == $driver->id ? 'selected' : '' }}>
-                            {{ $driver->name }}
+                        <option value="{{ $driver->user_id }}"
+                            {{ $vehicle->driver_id == $driver->user_id ? 'selected' : '' }}>
+                            {{ $driver->Lastname }}
                         </option>
                     @endforeach
                 </select>
@@ -67,6 +67,8 @@
                 class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 focus:outline-none focus:bg-blue-700">
                 Update Vehicle
             </button>
+            <a href="{{ route('admin.vehicles.index') }}"
+                class=" hover:bg-slate-300 bg-blue-200 text-black py-2 font-semibold px-2 rounded "> Go back</a>
         </form>
     </div>
 </x-layout>

@@ -52,16 +52,16 @@
 
         </div>
     </div>
-    {{-- Khassni ndir mzl amounts dyal xhar wa7d 
+    {{-- Khassni ndir mzl amounts dyal xhar wa7d done
             o ghanzid ana ay ay client wsl l 10 les delivery taykhod cupon kayn9ss lih f 10 jayin
             How Many deliveries ar paid
             how
             whose the driver that are disponibles
             --}}
     <div
-        class="Total-Amount ">
+        class="Total-Amount flex flex-wrap ">
         @foreach ($monthlyAmounts as $monthlyAmount)
-            <div class="ml-10  flex  space-x-5 ">
+            <div class="ml-10 flex border-r-4 border-blue-500 pr-4">
                 <div class="border rounded-xl bg-gray-50 border-2 flex flex-col px-20 py-5" >
                     Month : 
                     <span class="font-bold text-blue-500">{{ $monthlyAmount->month }}</span>
@@ -73,7 +73,7 @@
                         </span>
                     
                 </div>
-            </div>
+            </div>  
         @endforeach
     </div>
     <div class="delivered-deliveries flex flex-wrap justify-between">

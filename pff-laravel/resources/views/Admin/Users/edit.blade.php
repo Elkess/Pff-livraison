@@ -77,6 +77,8 @@
             <br><br>
             <button type="submit" class=" bg-blue-600 hover:bg-0008eb text-white font-bold py-2 px-4 rounded">Update
                 User</button>
+                <a href="{{ route('admin.users.index') }}"
+                class=" hover:bg-slate-300 bg-blue-200 text-black py-2 font-semibold px-2 rounded "> Go back</a>
         </form>
     </div>
 </x-layout>

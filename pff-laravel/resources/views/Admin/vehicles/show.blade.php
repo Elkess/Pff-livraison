@@ -21,7 +21,7 @@
             </div>
             <div class="details flex">
                 <label for="currentLocation" class="mr-2 font-semibold">Current Location:</label>
-                <p>{{ $vehicle->currentLocation }}</p>
+                <p>{{ $vehicle->currentlocation }}</p>
             </div>
             <div class="details flex ">
                 <label for="driver_id" class="mr-2 font-semibold">Driver ID:</label>
@@ -36,6 +36,8 @@
                     @method('DELETE')
                     <button type="submit" class="button bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-700"
                         onclick="return confirm('Are you sure you want to delete this vehicle?')">Delete</button>
+                        <a href="{{ route('admin.vehicles.index') }}"
+                class=" hover:bg-slate-300 bg-blue-200 text-black py-2 font-semibold px-2 rounded "> Go back</a>
                 </form>
             </div>
         </div>
