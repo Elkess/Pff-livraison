@@ -1,6 +1,6 @@
 @extends('layout.master')
 @section('title','Dashbord')
 @section('content')
-    <x-nav-bar/>
+    <x-ClientNavbar/>
 Hello  {{ auth()->user()->Firstname }}
 @endsection

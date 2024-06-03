@@ -1,24 +1,43 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
-use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\OrderController;
+
+use App\Http\Middleware\DriverMiddleware;
+use App\Http\Controllers\DriverController;
 use App\Http\Controllers\PaypalController;
 use App\Http\Controllers\StripeController;
+use App\Http\Controllers\FallbackController;
+use App\Http\Controllers\auth\AuthController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\AdminController;
+
+
+use App\Http\Controllers\client\EmailController;
 use App\Http\Controllers\Admin\VehicleController;
+use App\Http\Controllers\client\ClientController;
 use App\Http\Controllers\Admin\DeliveryController;
 use App\Http\Controllers\Payments\PaymentController;
 
 
-use App\Http\Controllers\auth\AuthController;
-use App\Http\Controllers\ClientController;
-use App\Http\Controllers\DriverController;
-use App\Http\Controllers\FallbackController;
-use App\Http\Middleware\DriverMiddleware;
+Route::get('/', function () {
+    return view('Client.Home');
+})->name('Home');
 
-Route::redirect('/', 'authenticate');
+Route::get('/email', function () {
+    return view('Client.Contact');
+});
+
+Route::get('/email', [EmailController::class, 'create']);
+Route::post('/email', [EmailController::class, 'sendEmail'])->name('send.email');
+
+Route::post('/useeeer', [App\Http\Controllers\client\UserController::class, 'Useer'])->name('Useer');
+
+
+
+
+
+// Route::redirect('/', 'authenticate');
 Route::fallback(FallbackController::class);
 
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
@@ -96,6 +115,21 @@ Route::delete('/admin/vehicles/{vehicle}', [VehicleController::class, "destroy"]
     ->name('admin.vehicles.destroy');
 
 // order
+Route::get('/client/orders', [OrderController::class, "index"])
+    ->name('client.orders.index');
+Route::get('/client/orders/create', [OrderController::class, "create"])
+    ->name('client.orders.create');
+Route::post('/client/orders', [OrderController::class, "store"])
+    ->name('client.orders.store');
+Route::get('/client/orders/{vehicle}', [OrderController::class, "show"])
+    ->name('client.orders.show');
+Route::get('/client/orders/{vehicle}/edit', [OrderController::class, "edit"])
+    ->name('client.orders.edit');
+Route::put('/client/orders/{vehicle}', [OrderController::class, "update"])
+    ->name('client.orders.update');
+Route::delete('/client/orders/{vehicle}', [OrderController::class, "destroy"])
+    ->name('client.orders.destroy');
+    
 Route::get('admin/orders', [OrderController::class, 'ShowOrders'])->name("ShowOrders");
 Route::get('/order', [OrderController::class, 'showForm'])->name('order.form');
 Route::post('/order/place', [OrderController::class, 'placeOrder'])->name('order.place');
@@ -123,8 +157,9 @@ Route::get('/payment/paypal/cancel', [PaypalController::class, 'cancel'])
 
 
 // Payment  with Card
+// Payment with Card
 Route::get('/admin/payments', [PaymentController::class, 'index'])->name('admin.payments.index');
-
-Route::get('/payments/create', [PaymentController::class, 'create'])->name('payments.create');
-Route::post('/payments/process/{order}', [PaymentController::class, 'processPayment'])->name('payments.process');
-Route::get('/client/home/{order}', [ClientController::class, 'index'])->name('client.index');
+Route::get('/payments/create/{order}', [PaymentController::class, 'create'])->name('payments.create');
+Route::post('/payments/process', [PaymentController::class, 'processPayment'])->name('payments.process');
+Route::get('/client/home/', [ClientController::class, 'index'])->name('client.index');
+// Route::get('/client/home/', [ClientController::class, 'markAsDelivered'])->name('client.index');

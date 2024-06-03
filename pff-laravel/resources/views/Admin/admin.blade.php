@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Panel</title>
     {{-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}
-    @vite(['resources/css/app.css'])
+    @vite(['resources/css/tail.css'])
 </head>
 
 <body class="bg-gray-100">
@@ -62,7 +62,7 @@
         class="Total-Amount flex flex-wrap ">
         @foreach ($monthlyAmounts as $monthlyAmount)
             <div class="ml-10 flex border-r-4 border-blue-500 pr-4">
-                <div class="border rounded-xl bg-gray-50 border-2 flex flex-col px-20 py-5" >
+                <div class=" border rounded-xl bg-gray-50 border-2 flex flex-col px-20 py-5" >
                     Month : 
                     <span class="font-bold text-blue-500">{{ $monthlyAmount->month }}</span>
                 </div>

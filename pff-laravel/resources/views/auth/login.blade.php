@@ -1,5 +1,6 @@
 @extends('layout.auth')
 @section('form')
+    <x-ClientNavbar />
 
     <section>
         <div class="container py-5 h-100">

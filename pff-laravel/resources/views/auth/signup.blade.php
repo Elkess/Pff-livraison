@@ -1,5 +1,7 @@
 @extends('layout.auth')
 @section('form')
+    <x-ClientNavbar />
+
     <section>
         <div class="container py-5 h-100">
             <div class="row d-flex justify-content-center align-items-center h-100">
@@ -19,26 +21,26 @@
                                         <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Create a new account
                                         </h5>
                                         <div class="form-outline form-floating mb-4">
-                                            <input type="text" name="firstname" class="form-control form-control-lg"
+                                            <input type="text" name="Firstname" class="form-control form-control-lg"
                                                 placeholder="First Name" />
                                             <label class="form-label">First Name</label>
-                                            @error('firstname')
+                                            @error('Firstname')
                                                 <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
                                         <div class="form-outline form-floating mb-4">
-                                            <input type="text" name="lastname" class="form-control form-control-lg"
+                                            <input type="text" name="Lastname" class="form-control form-control-lg"
                                                 placeholder="Last Name" />
                                             <label class="form-label">Last Name</label>
-                                            @error('lastname')
+                                            @error('Lastname')
                                                 <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
                                         <div class="form-outline mb-4 form-floating">
-                                            <input type="tel" name="phone" maxlength="10"
-                                                class="form-control form-control-lg" placeholder="Telephone" />
+                                            <input type="tel" name="phonenumber" maxlength="10"
+                                                class="form-control form-control-lg" placeholder="phone number" />
                                             <label class="form-label">Phone Number</label>
-                                            @error('phone')
+                                            @error('phonenumber')
                                                 <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>

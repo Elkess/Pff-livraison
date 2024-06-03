@@ -25,8 +25,8 @@ return new class extends Migration
             $table->unsignedBigInteger('driver_id');
             $table->unsignedBigInteger('vehicle_id');
             $table->foreign('client_id')->references('user_id')->on('users');
-            $table->foreign('driver_id')->references('user_id')->on('users');
-            $table->foreign('vehicle_id')->references('vehicle_id')->on('vehicles');
+            $table->foreign('driver_id')->references('user_id')->on('users')->nullable();;
+            $table->foreign('vehicle_id')->references('vehicle_id')->on('vehicles')->nullable();;
             $table->timestamps();
         });
     }

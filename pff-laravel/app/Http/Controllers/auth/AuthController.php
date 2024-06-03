@@ -41,22 +41,20 @@ class AuthController extends Controller
     public function signup(Request $request)
     {
   $validated = $request->validate([
-            'firstname' => 'required',
-            'lastname' => 'required',
-            'phone' => 'required|numeric',
+            'Firstname' => 'required',
+            'Lastname' => 'required',
+            'phonenumber' => 'required|numeric',
             'email' => 'required|email',
             'password' => 'required',
         ]);
     if($validated){
         User::create([
-            'firstname' => $request->firstname,
-            'lastname' => $request->lastname,
-            'phone' => $request->phone,
+            'Firstname' => $request->Firstname,
+            'Lastname' => $request->Lastname,
+            'phonenumber' => $request->phonenumber,
             'role' => 'client',
             'email' => $request->email,
-            'phonenumber' => $request->phone,
             'password' => Hash::make($request->password),
-            'address' => $request->address,
         ]);
         return redirect(route('auth.login'));
     }else{
