@@ -10,7 +10,7 @@
             color: #f8f9fa; /* Light text */
             text-align: center;
             padding: 20px 0;
-            position: fixed;
+            /* position: fixed; */
             width: 100%;
             bottom: 0;
             box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
