@@ -51,18 +51,18 @@
                                     class="badge bg-primary"
                                     @break 
                                     @default
-                                    class='btn  '
+                                    class='btn'
                                     @endswitch>{{ $vehicle->status }}</span>
                             </p>
                             Location :
                             <textarea class="card-text form-control badge bg-primary-subtle text-black-50 fs-6 " disabled> {{ $vehicle->currentlocation }}</textarea>
                             @if ($vehicle->status != 'Reported')
-                            <div class="row m-2">
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                data-bs-target="#reportModal{{ $vehicle->vehicle_id }}">
-                                Report Vehicle
-                            </button>
-                        </div>
+                                <div class="row m-2">
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                        data-bs-target="#reportModal{{ $vehicle->vehicle_id }}">
+                                        Report Vehicle
+                                    </button>
+                                </div>
                                 <div class="modal fade" id="reportModal{{ $vehicle->vehicle_id }}" data-bs-backdrop="static"
                                     data-bs-keyboard="false" tabindex="1"
                                     aria-labelledby="reportModalLabel{{ $vehicle->vehicle_id }}" aria-hidden="true">
@@ -80,23 +80,23 @@
                                                     @csrf
                                                     <input type="hidden" name="vehicle_id"
                                                         value="{{ $vehicle->vehicle_id }}" />
-                                                    <div class="m-3">
-                                                        <label class="form-label">Report Details:</label>
-                                                        <textarea class="form-control" required name="description" placeholder="Report Description"></textarea>
-                                                    </div>
-                                                    @error('record')
-                                                        {{ $errors }}
-                                                    @enderror
-                                                    <div class="m-3">
-                                                        <label class="form-label">Sujet:</label>
-                                                        <input class="form-control" name="subject" placeholder="subject"
+                                                        <div class="m-3">
+                                                            <label class="form-label">Sujet:</label>
+                                                            <input class="form-control" name="subject" placeholder="subject"
                                                             required />
-                                                    </div>
-                                                    <div class="m-3">
-                                                        <label class="form-label">Vehicle Location:</label>
-                                                        <input class="form-control" name="location"
-                                                            placeholder="Vehicle Location" required />
-                                                    </div>
+                                                        </div>
+                                                        <div class="m-3">
+                                                            <label class="form-label">Vehicle Location:</label>
+                                                            <input class="form-control" name="location"
+                                                                placeholder="Vehicle Location" required />
+                                                        </div>
+                                                        <div class="m-3">
+                                                            <label class="form-label">Report Details:</label>
+                                                            <textarea class="form-control" required name="description" placeholder="Report Description"></textarea>
+                                                        </div>
+                                                        @error('record')
+                                                            {{ $errors }}
+                                                        @enderror
                                                     <div class="modal-footer">
                                                         <button class="btn btn-danger" type="submit">Submit</button>
                                                         <button type="button" class="btn btn-secondary"

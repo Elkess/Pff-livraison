@@ -35,18 +35,8 @@ class PaymentController extends Controller
         // Retrieve the order details
         $order = Order::findOrFail($request->order_id);
 
-        // Validate payment data
-        // $request->validate([
-        //     'amount' => 'required|numeric|min:0',
-        //     'card_number' => 'required|numeric',
-        //     'expiry_date' => 'required|date_format:m/y',
-        //     'cvv' => 'required|numeric|min:3',
-        // ]);
-
         $userId = $order->client_id;
-        // dd($order);
         
-
         
             // Create payment record
         Payment::create([
@@ -74,7 +64,7 @@ class PaymentController extends Controller
             'dropofftime' => $order->dropOffTime,
             'status' => 'Ready',
             'client_id' => $userId,
-            'driver_id' => null, // Placeholder value, should be dynamic
+            'driver_id' => 1, // Placeholder value, should be dynamic
             'vehicle_id' => null, // Placeholder value, should be dynamic
         ]);
 

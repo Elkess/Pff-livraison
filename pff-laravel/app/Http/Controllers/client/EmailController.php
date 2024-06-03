@@ -33,7 +33,6 @@ class EmailController extends Controller
             $message->to('aminesaaad2004@gmail.com')
                 ->subject($data['subject']);
         });
-
         return back()->with(['message' => 'Email successfully sent!']);
     }
 }

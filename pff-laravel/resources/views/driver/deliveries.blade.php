@@ -100,7 +100,7 @@
                                         action={{ route('cancel', $delivery->delivery_id) }}>
                                         @csrf
                                         @method('PATCH')
-                                        <button class="btn btn-warning" type="submit">Cancel</button>
+                                        <button class="btn btn-secondary" type="submit">Cancel</button>
                                     </form>
                                 @endif
                             </div>

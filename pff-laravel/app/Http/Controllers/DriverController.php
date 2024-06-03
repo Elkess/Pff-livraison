@@ -115,10 +115,8 @@ class DriverController extends Controller
 
         if ($validated) {
             $delivery = Delivery::where('vehicle_id', $request->vehicle_id)->get()->first();
-
             $vehicle = Vehicle::where('vehicle_id', $request->vehicle_id)->get()->first();
-            // dd($request->all());
-            if ($delivery!= null) {   
+            if ($delivery != null) {
                 $delivery->update([
                     'status' => 'Ready',
                     'driver_id' => 1,
@@ -127,7 +125,8 @@ class DriverController extends Controller
                 ]);
             }
             $vehicle->update([
-                'status' => 'Reported'
+                'status' => 'Reported',
+                'currentlocation' => $request->location
             ]);
             Report::create([...$request->all(), 'status' => 'Report Sent To Admin']);
             return redirect(route('driver.vehicles'));

@@ -162,4 +162,3 @@ Route::get('/admin/payments', [PaymentController::class, 'index'])->name('admin.
 Route::get('/payments/create/{order}', [PaymentController::class, 'create'])->name('payments.create');
 Route::post('/payments/process', [PaymentController::class, 'processPayment'])->name('payments.process');
 Route::get('/client/home/', [ClientController::class, 'index'])->name('client.index');
-// Route::get('/client/home/', [ClientController::class, 'markAsDelivered'])->name('client.index');

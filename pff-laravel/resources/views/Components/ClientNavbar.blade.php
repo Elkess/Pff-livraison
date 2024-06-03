@@ -235,7 +235,7 @@
             <li><a href="/Sing up">Sing up</a></li>
         </ul> --}}
         <ul>
-            <li><a href="/" class='logo'>
+            <li><a href="{{ route('client.index') }}" class='logo'>
                     <svg id="logo-87" width="202" height="40" viewBox="0 0 202 40" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
                         <path class="ccustom" fill-rule="evenodd" clip-rule="evenodd"
@@ -274,11 +274,22 @@
                             fill="#007DFC"></path>
                     </svg>
                 </a></li>
-            <li class="hideOnMobile"><a class="menu" href="/">Home</a></li>
-            
-            <li class="hideOnMobile"><a class="menu" href="/email">Contact</a></li>
-            <li class="hideOnMobile"><a class="menu" href="{{ route('auth.login') }}">Login</a></li>
-            <li class="hideOnMobile"><a class="menu" href="{{ route('auth.signup') }}">Sing up</a></li>
+                
+                @switch(auth()->check())
+                @case(1)
+                <li class="hideOnMobile"><a class="menu" href="/">Home</a></li>
+                <li class="hideOnMobile"><a class="menu" href="/email">Contact</a></li>
+                <li class="hideOnMobile"><a class="menu" href="{{ route('logout') }}">Logout</a></li>
+                @break
+                @case(0)
+                <li class="hideOnMobile"><a class="menu" href="/email">Contact</a></li>
+                <li class="hideOnMobile"><a class="menu" href="{{ route('auth.login') }}">Login</a></li>
+                <li class="hideOnMobile"><a class="menu" href="{{ route('auth.signup') }}">Sign up</a></li>
+                
+                @break
+                @default
+                
+                @endswitch
             <li class="menu-button" onclick=showSidebar()><a href="#"><svg xmlns="http://www.w3.org/2000/svg"
                         height="26" viewBox="0 96 960 960" width="26">
                         <path d="M120 816v-60h720v60H120Zm0-210v-60h720v60H120Zm0-210v-60h720v60H120Z" />
