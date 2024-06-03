@@ -27,13 +27,13 @@
     .custom-table tbody tr:hover {
     background-color: #ddd;
     }
-    </style>
+</style>
     <div class="card m-5 ">
         <h2 class="text-center m-5">Deliveries</h2>
         <div class="d-flex flex-column ms-5 justify-content-center">
             <table class="custom-table table-hover table-responsive table-hover align-self-center  w-75">
                 <thead>
-                    <tr class="text-center" style="background-color: red">
+                    <tr class="text-center">
                         <th class="text-nowrap ">Delivery ID</th>
                         <th>Client </th>
                         <th>Pickup Location </th>

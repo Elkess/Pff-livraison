@@ -32,7 +32,7 @@
                             @endif
 
                 <h6 class="card-text">Destination:
-                    <span class="badge bg-primary fs-6   text-wrap">
+                    <span class="badge bg-primary fs-6 text-wrap">
                         {{ $delivery->dropofflocation }}
                     </span>
                 </h6>
